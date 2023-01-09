@@ -29,7 +29,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
-from app import models_cases, models_main, routes_admin, routes_cases, routes_main
+from app import models_cases, models_main, routes_admin, routes_cases, routes_main, routes_redirect
 
 
 
