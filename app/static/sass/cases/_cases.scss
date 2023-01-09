@@ -1,0 +1,109 @@
+.cases {
+    margin: 0 auto;
+    max-width: 1441px;
+    min-width: 370px;
+    padding: 110px 30px 25px 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 80px;
+}
+
+.case {
+    display: flex;
+    column-gap: 20px;
+    row-gap: 10px;
+    @media screen and(max-width: 650px){
+        flex-wrap: wrap;
+    }
+
+    img {
+        border-radius: 20px;
+        object-fit: cover;
+        width: 100%;
+        max-width: 200px;
+        min-width: 217px;
+        max-height: 210px;
+        min-height: 200px;
+        flex-shrink: 2;
+        @media screen and(max-width: 650px){
+            max-width: 400px;
+        }
+    }
+}
+
+.title_case {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    flex-shrink: 1;
+    color: white;
+    p {
+        color: rgb(165, 165, 165);
+        font-size: 23px;
+        line-height: 35px;
+    }
+    a{color: white;
+    transition: all 0.1s ease-in;
+    display: contents;
+    font-size: 23px;
+    line-height: 35px;
+    }
+
+    a:hover{color: $green;}
+}
+
+// Один кейс
+
+.paragraph button {
+    background-color: $gray;
+    color:$green;
+    max-width: 500px;
+    padding: 15px 10px;
+    border-radius: 8px;
+    border: 1px solid $green;
+    font-weight: 700;
+}
+.paragraph img{
+    width: 20px;
+}
+
+.top {
+    padding-top: 100px;
+}
+
+.paragraph>h3 {
+    position: relative;
+}
+
+.paragraph>h3:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 8px;
+  
+    width: 15px;
+    height: 15px;
+  
+    background-image: url('../images/catalog/phone.svg');
+  
+    background-size: 15px 15px;
+}
+
+
+// Удалить кейс
+.del_cases {
+    padding: 30px 0;
+}
+.del_case {
+    padding-top: 5px;
+    a {
+        color: black;
+    }
+    img {
+        padding-top: 2px;
+    }
+}
+
+
+
+

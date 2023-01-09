@@ -1,0 +1,42 @@
+.benefits {
+    background-color: #161616;
+    background-image: url(images/pluses/bg.png);
+    background-repeat: repeat-x;
+    min-width: 370px;
+}
+
+.benefits__container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 90px 30px 0 30px;
+    @extend %container;
+
+    @media screen and(max-width:1209px) {
+        align-items: center;
+    }
+}
+
+.benefits__row{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 350px));
+    column-gap: 50px;
+    row-gap: 50px;
+    justify-content: space-between;
+    padding: 100px 0 100px 0;
+    
+    @media screen and(max-width:1209px) {
+        justify-content: space-around;
+    }
+}
+
+.circle {
+    display: flex;
+    min-width: 310px;
+    max-width: 350px;
+    align-items: flex-start;
+    column-gap: 25px;
+    img{
+        width: 59px;
+    }
+}

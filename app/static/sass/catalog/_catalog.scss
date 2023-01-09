@@ -1,0 +1,132 @@
+.container__catalog {
+    max-width: 1441px;
+    min-width: 370px;
+    padding: 130px 30px 25px 30px;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.container__adm {
+  padding: 20px 0;
+}
+
+.grid {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(340px,1fr));
+    grid-auto-rows: 40px;
+}
+
+.grid > .item {
+    border-radius: 20px;
+    background-color: #292727;
+    padding: 10px;
+}
+
+
+@media screen and (max-width: 450px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+    }
+    }
+
+
+/* green circle */
+.grid > .item > .content > .category:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 6px;
+  
+    width: 15px;
+    height: 15px;
+  
+    background-image: url('../images/catalog/circle.svg');
+  
+    background-size: 15px 15px;
+  }
+  
+  /* Заголовок green */
+  .grid > .item > .content > .category {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    display: block;
+  }
+
+  .grid > .item > .content > .del_category {
+    position:absolute;
+    left:-2px;
+    top: 5px;
+    z-index: 3;
+  }
+
+  .content  .del_category {
+    position:absolute;
+    left:-22px;
+    top: 12px;
+    z-index: 3;
+  }
+  
+  //Категории
+  .category {
+    color: white;
+    font-weight: 700;
+    transition: all 0.1s ease-in 0s;
+  }
+  .category:hover {
+    color:#B0CB1F;
+  }
+  
+  
+  
+  /* Отступы */
+  .submenu > .item {
+    padding-bottom: 10px;
+  }
+  
+  .submenu {
+    padding-left: 20px;
+  }
+
+  .content {
+    position: relative;
+  }
+  
+  .submenu .item .content .category{
+    padding-bottom: 5px;
+    padding-top: 10px;
+    display: block;
+  }
+  
+  .product1 a{
+      color: rgb(197, 197, 197);
+      transition: all 0.1s ease-in 0s;
+  }
+  .product1 a:hover {
+    color:#B0CB1F;
+  }
+  .product1 > a::before{
+    content: "- ";
+  }
+  
+  .product1 {
+    padding-left: 20px;
+    line-height: 20px;
+    padding-bottom: 10px;
+    
+  }
+
+  .del {
+    position:absolute;
+    left:11px;
+  }
+
+
+  .container__catalog > h3{
+    padding-bottom: 20px;
+  }
+  
+  

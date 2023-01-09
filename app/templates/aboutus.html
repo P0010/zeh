@@ -1,0 +1,182 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ab.title}}{% endblock %}
+{% block description %}{{ab.description}}{% endblock %}
+
+{% block body %}
+
+<div class="aboutus">
+       
+    <div class="aboutusred">
+        <h3>О нас</h3>
+        <div class="col2">
+            <p>Год основания</p>
+            <p>2010</p>
+        </div>
+
+        <div class="col2">
+            <p>Количество<br>сотрудников</p>
+            <p>{{ ab.num_employees }}</p>
+        </div>
+
+        <div class="col2">
+            <p>Филиалов</p>
+            <p>{{ ab.branches }}</p>
+        </div>
+    </div>
+
+    <div class="foundation">
+        <p>Помогаем благотворительным фондам</p>
+        <div class="row_foundation">
+            {% for foundation in ab.foundation %}
+            <div class="one_foundation">
+                <img src="{{ url_for('static', filename='images/product/')}}{{ foundation.filename }}" alt="{{ foundation.name }}">
+                <p>{{ foundation.name }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+<div class="equipments">
+    <div class="equipments_container">
+        <p>Собственное оборудование</p>
+        <div class="equipments_column">
+            {% for equipment in ab.equipment %}
+                <p>{{ equipment.equip }}</p>
+            {% endfor %}
+           
+        </div>
+    </div>
+</div>
+
+
+<div class="employees">
+    <h3>Наши сотрудники</h3>
+    <div class="emp">
+        {% for employees in ab.employees %}
+        <div class="col_employees">
+            <img src="{{ url_for('static', filename='images/product/')}}{{ employees.filename }}" alt="{{ employees.name }}">
+            <p>{{ employees.name }}</p>
+        </div>
+        {% endfor %}
+     
+    </div>
+</div>
+
+
+<div class="partner">
+    <div class="part2">
+        <h3>Наши партнёры</h3>
+        <div class="partner_container">
+            <img src="{{ url_for('static', filename='images/testdelete/partner/gazprom.png')}}">
+            <img src="{{ url_for('static', filename='images/testdelete/partner/sberbank.png')}}">
+            <img src="{{ url_for('static', filename='images/testdelete/partner/rostelecom.png')}}">
+            <img src="{{ url_for('static', filename='images/testdelete/partner/mts.png')}}">
+            <img src="{{ url_for('static', filename='images/testdelete/partner/transneft.png')}}">
+            <img src="{{ url_for('static', filename='images/testdelete/partner/rosneft.png')}}">
+            <img src="{{ url_for('static', filename='images/testdelete/partner/megafon.png')}}">
+            <img src="{{ url_for('static', filename='images/testdelete/partner/bashneft.png')}}">
+            <img src="{{ url_for('static', filename='images/testdelete/partner/rosatom.png')}}">
+            <img src="{{ url_for('static', filename='images/testdelete/partner/rusgidro.png')}}">
+            <img src="{{ url_for('static', filename='images/testdelete/partner/beeline.png')}}">
+        </div>
+    </div>
+</div>
+
+
+<div class="awards">
+    <h3>Наши награды</h3>
+    <div class="awa">
+        {% for awards in ab.awards %}
+        <div class="col_awards">
+            <img src="{{ url_for('static', filename='images/product/')}}{{ awards.filename }}" >
+        </div>
+        {% endfor %}      
+    </div>
+</div>
+
+
+<div class="bigcontact">
+    <div class="container__bigcontact">
+        <div class="image_phone">
+            <img src="{{ url_for('static', filename='images/catalog/phone.svg')}}" alt="телефон">
+            <p>Звоните</p>
+        </div>
+        <div class="office">
+            
+            {% for contact in contacts %}
+            <div class="phone_office">
+                <div class="phones">
+                    {% for phone in contact.phones %}
+                        <a href="tel:{{phone.phone}}"><p>Телефон: {{ phone.phone[0:8] }} <span>{{ phone.phone[8:] }}</span></p></a>
+                    {% endfor %}
+                </div>
+                <p>{{ contact.address}}</p>
+            </div>
+            {% endfor %}
+
+            <div class="callback">
+                <p>Или оставьте заявку, мы вам перезвоним</p>
+                <a><p class="bottom1 open_pop_up">Оставить заявку</p></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="threemoment">
+    <div class="container_threemoment">
+        <p>Обращаясь к нам, вы можете быть уверены в этих трёх моментах:</p>
+        <div class="three_1">
+
+            <div class="three_like">
+                <div>ПРОФЕССОНАЛИЗМ</div>
+                <p>Изготовление наружной рекламы в Уфе в соответствии с самыми высокими стандартами качества и клиентского сервиса. Каждую проект, разработанный и реализованный в нашей компании, мы стремимся довести до совершенства.</p>
+            </div>
+
+            <div class="three_like">
+                <div>ИНДИВИДУАЛЬНЫЙ ПОДХОД</div>
+                <p>После обращения к нам мы не навязываем дорогостоящие решения, а в первую очередь предлагаем тот вариант, который наиболее полно соответствует запросу и при этом укладывается в заложенную смету</p>
+            </div>
+
+            <div class="three_like">
+                <div>ОТВЕТСТВЕННОСТЬ</div>
+                <p>Мы стремимся первыми осваивать новые технологии, используемые в изготовлении наружной рекламы. Выбираем только надежных поставщиков и даем гарантию на наше производство 1 год.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="question">
+    <div class="container_question">
+        <p>Задайте ваш вопрос в месседжеры: </p>
+        <a href="{{ ind.whatsap }}"><img src="{{ url_for('static', filename='images/footer/whatsapp.svg')}}"></a>
+        <a href="{{ ind.telegram }}"><img src="{{ url_for('static', filename='images/footer/telegram.svg')}}"></a>
+    </div>
+</div>
+
+<div class="map-size">
+    <div class="map" id="yamap"></div>
+</div>
+
+<script>
+    let ok = false;
+    window.addEventListener('scroll', function() {
+        if (ok === false) {
+            ok = true;
+            setTimeout(() => {
+                let script = document.createElement('script');
+                script.src = 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A41f6b0a909294809e43f464098dca80032d0257fc96a4e8591db9d18c7a91a9f&amp;width=100%500&amp;height=400&amp;lang=ru_RU&amp;scroll=true';
+                document.getElementById('yamap').replaceWith(script);
+            }, 1000)
+        }
+    });
+</script>
+
+
+{% endblock %}

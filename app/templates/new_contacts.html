@@ -1,0 +1,75 @@
+{% extends 'admin_layout.html' %}
+
+
+
+{% block body %}
+
+
+<div class="container_admin_form">
+
+    <h3>Новый контакт</h3>
+
+    <form method="post" enctype=multipart/form-data>
+
+        <div class="column_one">
+            <div class="count_one">1</div>
+            <div class="column_one_res">
+                <input type="text" name="address" class="admin_name" maxlength="70" placeholder="Введите адрес" required>
+                <input type="text" name="name" class="admin_name" maxlength="50" placeholder="Введите название(Пример:Цех на Проспекте)" required>
+                <input type="text" name="email" class="admin_name" maxlength="50" placeholder="Введите e-mail" required>
+            </div>
+        </div>
+
+        <div class="column_one">
+            <div class="count_one">2</div>
+            <div class="column_one_res">
+                <input type="text" name="weekdays" class="admin_name" maxlength="50" placeholder="Укажите время в рабочие дни(Пример: 09:00-21:00)" required>
+                <input type="text" name="saturday" class="admin_name" maxlength="50" placeholder="Суббота (Пример: 10:00-17:00)" required>
+                <input type="text" name="sunday" class="admin_name" maxlength="50" placeholder="Воскресенье(Пример: Выходной)" required>
+            </div>
+        </div>
+
+        <div class="column_one">
+            <div class="count_one">3</div>
+            <textarea name="script" maxlength="1000" placeholder="Введите скрипт яндекса карт (yandex.ru/map-constructor/) высота 411px" require></textarea>
+        </div>
+
+       <div class="column_one">
+            <div class="count_one">4</div>
+            <div id="profile">
+                <div id="input0">
+                    <textarea name="phone" maxlength="400" placeholder="Введите номер телефон, пример +7 (999) 999 99 99" require></textarea>
+                </div>
+            </div>
+            <div class="row_counter">
+                <div class="counter" onclick="addInput_phone()">+ Добавить</div>
+                <div class="counter" onclick="delInput_phone()">- Удалить</div>
+            </div>
+        </div>
+        
+        <input class="admin_button" type="submit" value="Создать">
+    </form>
+
+    <div class="del_cases">
+        {% for contact in contacts %}
+        <div class="del_case">
+            <a href="{{ url_for('contact_delete', id=contact.id) }}"><img src="{{ url_for('static', filename='images/admin/del_red.svg') }}"></a>
+            <a href="{{ url_for('update_contact', id=contact.id) }}">{{ contact.name }}</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h3>Title и description контактов</h3>
+    <form method="post" action="{{ url_for('contact_title') }}">
+        <div class="column_one">
+            <input type="text" name="title" maxlength="200" value="{{ contact_t.title }}" required>
+            <textarea type="text" name="description" maxlength="300">{{ contact_t.description }}</textarea>
+            <input class="admin_button" type="submit" value="Сохранить">
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,68 @@
+.bigcontact {
+    background-color: $black;
+    color:#C5C5C5;
+    min-width: 370px;
+}
+
+.container__bigcontact {
+    @extend %container;
+    padding: 50px 30px 50px 30px;
+    column-gap: 25px;
+    row-gap: 20px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    @media screen and(max-width:700px){
+        justify-content: flex-start;
+    }
+}
+
+.image_phone {
+    display: flex;
+    img {
+        padding-right: 7px;
+    }
+}
+
+.office {
+    display: flex;
+    flex-direction: column;
+    row-gap: 35px;
+}
+
+.phone_office {
+    display: flex;
+    column-gap: 20px;
+    flex-wrap: wrap-reverse;
+    
+    p {
+        width: 250px;
+    }
+}
+.phones a{
+    color: $green;
+}
+
+.callback p{
+    margin-bottom: 20px;
+}
+.bottom1 {
+    border: 1px solid white;
+        
+        color:white;
+        border-radius: 4px;
+        flex-basis: 400px;
+        min-width: 300px;
+        padding:10px 10px 10px 10px;
+        transition: all 0.2s ease-in;
+        text-align: center;
+        &:hover {
+            background-color: $green;
+            color: $black;
+        }
+}
+
+.open_pop_up{
+    cursor: pointer;
+}

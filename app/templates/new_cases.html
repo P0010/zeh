@@ -1,0 +1,132 @@
+{% extends 'admin_layout.html' %}
+
+
+{% block body %}
+
+<div class="container_admin_form">
+
+    <h3>Новый кейс</h3>
+
+    <form method="post" enctype=multipart/form-data>
+
+        <div class="column_one">
+            <div class="count_one">1</div>
+            <div class="column_one_res">
+                <input type="text" name="title" class="admin_name" maxlength="50" placeholder="Введите название(до 50 символов)" required>
+        
+            </div>
+            <textarea name="intro" maxlength="1500" placeholder="Введите текст интро (до 1500 символов)" require></textarea>
+            <div class="column_one_res">
+                <input type="text" name="title2" class="admin_name" maxlength="200" placeholder="Введите тег title" required>
+                <input type="text" name="description" class="admin_name" maxlength="300" placeholder="Введите тег description" required>
+            </div>
+
+
+        </div>
+        
+        <div class="column_one">
+            <div class="count_one">2</div>
+            <div id="profile">
+                <div id="inputadm" class="input_red">
+                    <input type="text" name="alt" class="admin_n" maxlength="50" placeholder="Введите название картинки (alt)" required>
+                    <label for="file-upload" class="custom-file-upload">
+                        Загрузить картинку
+                    </label>
+                    <input id="file-upload" type=file name=file required>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="column_one">
+            Выберети допродажи к товару (желательно не более 5)
+            <div class="count_one">3</div>
+            <div id="profile2">
+                <div id="input0" class="input_sug">
+                    <select name="uslugi" multiple size="10">
+                        {%- for item in categories.children recursive %}
+
+                            <option disabled>{{item.level|int * '-'}}{{item.name}}</option>
+        
+                            {% for pink in item.items %}
+                                    <option value="{{pink.id}}">{{item.level|int * '◦'}}{{pink.name}}</option>
+                            {% endfor %}
+        
+                            {%- if item.children -%}
+                                <p>{{ loop(item.children) }}</p>
+                                <option disabled></option>
+                            {%- endif %}
+    
+                        {% endfor %}
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="column_one">
+            <div class="count_one">4</div>
+            <input type="text" name="title1" maxlength="50" placeholder="Введите заголовок конечного текста" required>
+            <textarea name="text1" maxlength="3000" placeholder="Введите конечный текст (до 3000 символов)" required></textarea>
+            
+            <div id="inputadm" class="input_red">
+                <input type="text" name="alt1" class="admin_n" maxlength="50" placeholder="Введите название картинки (alt)" required>
+                <label for="file-upload1" class="custom-file-upload">
+                    Загрузить картинку
+                </label>
+                <input id="file-upload1" type=file name=file1 required>
+            </div>
+
+            <div id="inputadm" class="input_red">
+                <input type="text" name="alt2" class="admin_n" maxlength="50" placeholder="Введите название картинки (alt)" required>
+                <label for="file-upload2" class="custom-file-upload">
+                    Загрузить картинку
+                </label>
+                <input id="file-upload2" type=file name=file2 required>
+            </div>
+
+            <div id="inputadm" class="input_red">
+                <input type="text" name="alt3" class="admin_n" maxlength="50" placeholder="Введите название картинки (alt)" required>
+                <label for="file-upload3" class="custom-file-upload">
+                    Загрузить картинку
+                </label>
+                <input id="file-upload3" type=file name=file3 required>
+            </div>
+            
+        </div>
+
+
+        
+     
+
+        <input class="admin_button" type="submit" value="Создать">
+    </form>
+
+    
+    <div class="del_cases">
+        {% for case in cases %}
+        <div class="del_case">
+            <a href="{{ url_for('case_delete', id=case.id) }}"><img src="{{ url_for('static', filename='images/admin/del_red.svg') }}"></a>
+            <a href="{{ url_for('update_case', id=case.id) }}">{{ case.title }}</a>
+        </div>
+        {% endfor %}
+    </div>
+    
+
+
+    <h3>Title и description кейсов </h3>
+    <form method="post" action="{{ url_for('case_title') }}">
+        <div class="column_one">
+            <input type="text" name="title" maxlength="200" value="{{ case_t.title }}" required>
+            <textarea type="text" name="description" maxlength="300">{{ case_t.description }}</textarea>
+            <input class="admin_button" type="submit" value="Сохранить">
+        </div>
+    </form>
+
+    
+
+</div>
+
+
+
+{% endblock %}

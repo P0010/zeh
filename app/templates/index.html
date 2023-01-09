@@ -1,0 +1,196 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ind.title}}{% endblock %}
+{% block description %}{{ind.description}}{% endblock %}
+
+
+{% block body %}
+
+<div class="main">
+    <div class="main_container">
+        <img class="hand_1 parellax" data-rellax-horizontal-speed="-1" data-rellax-vertical-scroll-axis="x" src="{{ url_for('static', filename='images/main/hand_1.svg') }}">
+        <img class="hand_2 parellax" data-rellax-horizontal-speed="2" data-rellax-vertical-scroll-axis="x" src="{{ url_for('static', filename='images/main/hand_2.svg') }}">
+        <h1>РЕКЛАМНО-<br>ПРОИЗВОДСТВЕННАЯ ГРУППА</h1>
+        <div class="form">
+            <p>Заказать обратный звонок</p>
+            <form method="post" id="form-id">
+                <div class="user-box">
+                  <input type="text" name="name" required>
+                  <label>Ваше имя</label>
+                </div>
+                <div class="user-box">
+                  <input type="text" name="phone" id="phone1" required>
+                  <label>Ваш телефон</label>
+                  <input class="tab2" type="hidden" name="topic"  value="Главная страница, первый блок" required>
+                </div>
+                <a class="form__button" href="javascript:void(0);" onclick="document.getElementById('form-id').submit();">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <p>Отправить</p>
+                  
+                </a>
+                <div class="terms">Я принимаю <a href="{{url_for('politica')}}">условия</a> передачи информации.</div>
+            </form>
+        </div>
+    </div>
+    <div class="service_container">
+        <div class="one box">
+            <img src="{{ url_for('static', filename='images/main/one.svg') }}">
+            <p>Полностью <span> свое </span>производство</p>
+        </div>
+        <div class="two box">
+            <img src="{{ url_for('static', filename='images/main/two.svg') }}">
+            <p>Объёмные буквы световые короба, широкоформатная печать, консоли</p>
+        </div>
+        <div class="three box">
+            <img src="{{ url_for('static', filename='images/main/three.svg') }}">
+           <p>Согласовываем <span> любую </span>наружную рекламу</p>
+        </div>
+    </div>
+</div>
+
+<div class="pluses">
+
+    <div class="row">
+
+        <div class="design">
+            <div class="design__content">
+                <img src="{{ url_for('static', filename='images/pluses/icon_1.svg') }}" alt="Дизайн">
+                <div class="design__title">
+                    <h2>Дизайн</h2>
+                    <p><span>Наша команда дизайнеров работает более 4 лет.</span> Мы разработаем для Вас дизайн, соответствующий современным тенденциям. Подготовка к печати, наружное оформление, разработка фирменного стиля. При необходимости мы доработаем Ваши макеты и приведем в соответствие с используемыми материалами.</p>
+                </div>
+            </div>    
+        </div>
+
+        <div class="tech">
+            <div class="tech__content">
+                <img src="{{ url_for('static', filename='images/pluses/icon_2.svg') }}" alt="Дизайн">
+                <div class="tech__title">
+                    <h2>Техническое решение</h2>
+                    <p><span>Широкоформатная и интерьерная печать</span> на самых разнообразных материалах: баннерная ткань, самоклеющаяся пленка, бумага, холст, флаговая и полиэстеровая ткань и многое другое.</p>
+                </div>
+            </div>   
+        </div>
+
+    </div>
+
+
+
+    <div class="row">
+
+        <div class="prod">
+            <div class="prod__content">
+                <img src="{{ url_for('static', filename='images/pluses/icon_3.svg') }}" alt="Дизайн">
+                <div class="prod__title">
+                    <h2>Производство</h2>
+                    <p><span>Производство наш конёк! </span> Мы качественно и в кратчайшие сроки изготовим вывеску любой сложности, объемные световые буквы, композитные вывески с инкрустацией, растровые панели, вывески с точечными пиксельными диодами и многое другое.</p>
+                </div>
+            </div>   
+        </div>
+
+        <div class="mounting">
+            <div class="mounting__content">
+                <img src="{{ url_for('static', filename='images/pluses/icon_4.svg') }}" alt="Дизайн">
+                <div class="mounting__title">
+                    <h2>Монтаж</h2>
+                    <p><span>Монтаж рекламы является неотъемлемой и важнейшей функцией в рекламном ремесле.</span> Без профессионального подхода к монтажу рекламных конструкций невозможно добиться эффективных результатов в продвижении рекламных услуг.</p>
+                </div>
+            </div>    
+        </div>
+    </div>
+
+</div>
+
+
+<div class="individual_form">
+    <div class="container_form">
+        <div class="form">
+            <h3><span>&nbsp;Закажите&nbsp;</span><br> индивидуальный <br> расчёт</h3>
+            <form method="post" id="form-id2" class="js-form">
+                <div class="user-box">
+                  <input type="text" name="name" required>
+                  <label>Ваше имя</label>
+                </div>
+                <div class="user-box">
+                  <input type="text" name="phone" required>
+                  <label>Ваш телефон</label>
+                  <input class="tab2" type="hidden" name="topic"  value="Главная страница, Индивидуальный расчёт" required>
+                </div>
+                <input type="submit" class="form__button" >
+               
+                <div class="terms">Я принимаю <a href="{{url_for('politica')}}">условия</a> передачи информации.</div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="benefits">
+    <div class="benefits__container">
+
+        <h3><span>&nbsp;Наши&nbsp;</span> преимущества</h3>
+
+        <div class="benefits__row">
+
+            <div class="circle">
+                <img src="{{ url_for('static', filename='images/benefits/circle.svg') }}">
+                <p><span>4 офиса</span> в разных частях города – удобно добираться</p>
+            </div>
+            <div class="circle">
+                <img src="{{ url_for('static', filename='images/benefits/circle.svg') }}">
+                <p><span>Бесплатное сопровождение</span> в согласовании вывесок с городом*(ссылка на архитектурную концепцию от 15 года)</p>
+            </div>
+            <div class="circle">
+                <img src="{{ url_for('static', filename='images/benefits/circle.svg') }}">
+                <p>Прозрачные цены – <span>полные сметы</span> на все услуги</p>
+            </div>
+            <div class="circle">
+                <img src="{{ url_for('static', filename='images/benefits/circle.svg') }}">
+                <p>Опыт работы наших сотрудников<span> более 20 лет</span></p>
+            </div>
+            <div class="circle">
+                <img src="{{ url_for('static', filename='images/benefits/circle.svg') }}">
+                <p><span>Гарантия</span> на наше производство  1 год* (что входит в гарантийное обслуживание – приоритетный выезд на анализ в течение 24 часов, демонтаж гарантийных элементов, замена)</p>
+            </div>
+            <div class="circle">
+                <img src="{{ url_for('static', filename='images/benefits/circle.svg') }}">
+                <p><span>Приоритетное</span> постгарантийное обслуживание</p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="jobs">
+    <div class="jobs__container">
+        <h3><span>&nbsp;Наши&nbsp;</span> работы</h3>
+        <div class="cards_grid">
+        
+
+            {% for sug in ind_pr %}
+           
+                <div class="product card_{{ loop.index }}">
+           
+                    <a href="{{ url_for('product', url_cat=sug.product.item.url, url=sug.product.url) }}" >
+                        {% if sug.product.items[0] %} 
+                        <img src="{{ url_for('static', filename='images/product/new_product/')}}{{ sug.product.items[0].filename }}" alt="{{sug.product.items[0].alt}}">
+                        {% endif %}
+                    </a>
+                </div>
+             
+
+            {% endfor %}
+            
+            
+        
+        </div>
+        <a href="{{ url_for('catalog') }}">Смотреть всё...</a>
+    </div>
+</div>
+
+
+{% endblock %}
+

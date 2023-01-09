@@ -1,0 +1,114 @@
+.footer {
+    margin: 0 auto;
+    min-width: 370px;
+}
+
+.container__footer {
+    padding: 45px 30px 45px 30px;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    column-gap: 60px;
+    row-gap:50px;
+    @extend %container;
+    & div > p {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+    @media (max-width:1240px) {
+        & {
+            max-width: 900px;
+        }
+    }
+}
+
+
+// directions
+
+.direction_column {
+    display:grid;
+    grid-auto-flow: column;
+    grid-template-columns: fit-content(220px) ;
+    grid-template-rows:repeat(10, auto);
+    column-gap: 30px;
+    a {
+        color: #C5C5C5;
+        line-height: 23px;
+        text-overflow: ellipsis;
+        white-space: nowrap; /* Запрещаем перенос строк */
+        overflow: hidden;
+        transition: all 0.1s ease-in;
+        span {color: white;}
+
+        &:hover {
+            color: $green;
+        }
+    } 
+
+    @media (max-width:500px) {
+        grid-auto-flow: row;
+    }
+
+}
+
+
+// document
+.doc {
+    display: grid;
+    grid-template-columns: minmax(330px, 337px);
+    grid-template-rows: auto auto auto auto minmax(100px, 100px);
+    align-items: end;
+    white-space: nowrap ;
+    a{
+        color: #C5C5C5;
+        line-height: 30px;
+        @media (max-width:380px) {
+            & {
+                font-size: 15px;
+            }
+        }
+    } 
+}
+
+
+// contact__footer
+
+.contact__footer {
+    white-space: nowrap;
+    a {
+        color: #C5C5C5;
+        transition: all 0.1s ease-in;
+        &:hover {
+            color: $green;
+        }
+    }
+}
+
+.social__footer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    .bottom {
+        border: 1px solid white;
+        display: inline;
+        border-radius: 4px;
+        padding:5px 20px 5px 20px;
+        font-weight: 100;
+        font-size:12px;
+        margin-right: 10px;
+        transition: all 0.2s ease-in;
+        &:hover {
+            background-color: $green;
+            color: $black;
+        }
+    }
+}
+
+.logo_footer {
+    display: flex;
+    column-gap: 7px;
+    p {
+        font-size:12px;
+        line-height: 16px;
+    }
+}

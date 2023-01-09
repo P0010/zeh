@@ -1,0 +1,18 @@
+.question {
+    background-color: #151515;
+    width: 100%;
+    min-width: 370px;
+}
+
+.container_question {
+    @extend %container;
+    column-gap: 20px;
+    font-size: 24px;
+    font-weight: 700;
+    justify-content: center;
+
+
+    a img {
+        width: 41px;
+    }
+}

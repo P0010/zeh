@@ -1,0 +1,110 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{catid.title}}{% endblock %}
+{% block description %}{{catid.description}}{% endblock %}
+
+
+{% block body %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs__container">
+            <a href="{{ url_for('catalog')}}"><img src="{{ url_for('static', filename='images/breadcrumbs/home.svg')}}"></a>
+            {% for item in red | reverse  %}
+                {% if item.name=='root' %}
+                {% elif item.name==catid.name %}
+                {% else %}
+                    <a href="{{url_for('catid', url=item.url)}}">{{item.name}}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="container__suggestion">
+        <h3>{{catid.name}}</h3>
+        <div class="suggestion">
+
+            {% for pink in catid.items %}
+            <a href="{{url_for('product', url_cat=catid.url, url=pink.url)}}" class="suggestion__product">
+                <img src="{{ url_for('static', filename='images/product/new_product/')}}{{pink.items[0].filename}}" alt="{{ pink.items[0].alt }}">
+                <p>{{pink.name}}</p>
+            </a>
+            {% endfor %}
+
+            {% for i in catid.children %}
+                <a href="{{url_for('catid', url=i.url)}}" class="suggestion__product">
+                    <img src="{{ url_for('static', filename='images/product/catalog/')}}{{i.image[0].filename}}" alt="{{ i.image[0].alt }}">
+                    <p>{{i.name}}</p>
+                </a>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="text_three__container">
+        <div class="mono">
+            {{catid.text | safe }}
+        </div>
+    </div>
+
+    <div class="bigcontact">
+        <div class="container__bigcontact">
+            <div class="image_phone">
+                <img src="{{ url_for('static', filename='images/catalog/phone.svg')}}" alt="телефон">
+                <p>Звоните</p>
+            </div>
+            <div class="office">
+                
+                {% for contact in contacts %}
+                <div class="phone_office">
+                    <div class="phones">
+                        {% for phone in contact.phones %}
+                            <a href="tel:{{phone.phone}}"><p>Телефон: {{ phone.phone[0:8] }} <span>{{ phone.phone[8:] }}</span></p></a>
+                        {% endfor %}
+                    </div>
+                    <p>{{ contact.address}}</p>
+                </div>
+                {% endfor %}
+
+                <div class="callback">
+                    <p>Или оставьте заявку, мы вам перезвоним</p>
+                    <a><p class="bottom1 open_pop_up">Оставить заявку</p></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="threemoment">
+        <div class="container_threemoment">
+            <p>Обращаясь к нам, вы можете быть уверены в этих трёх моментах:</p>
+            <div class="three_1">
+    
+                <div class="three_like">
+                    <div>ПРОФЕССОНАЛИЗМ</div>
+                    <p>Изготовление наружной рекламы в Уфе в соответствии с самыми высокими стандартами качества и клиентского сервиса. Каждую проект, разработанный и реализованный в нашей компании, мы стремимся довести до совершенства.</p>
+                </div>
+    
+                <div class="three_like">
+                    <div>ИНДИВИДУАЛЬНЫЙ ПОДХОД</div>
+                    <p>После обращения к нам мы не навязываем дорогостоящие решения, а в первую очередь предлагаем тот вариант, который наиболее полно соответствует запросу и при этом укладывается в заложенную смету</p>
+                </div>
+    
+                <div class="three_like">
+                    <div>ОТВЕТСТВЕННОСТЬ</div>
+                    <p>Мы стремимся первыми осваивать новые технологии, используемые в изготовлении наружной рекламы. Выбираем только надежных поставщиков и даем гарантию на наше производство 1 год.</p>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+    <div class="question">
+        <div class="container_question">
+            <p>Задайте ваш вопрос в месседжеры: </p>
+            <a href="{{ ind.whatsap }}"><img src="{{ url_for('static', filename='images/footer/whatsapp.svg')}}"></a>
+            <a href="{{ ind.telegram }}"><img src="{{ url_for('static', filename='images/footer/telegram.svg')}}"></a>
+        </div>
+    </div>
+
+        
+{% endblock %}

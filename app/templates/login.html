@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title></title>
+</head>
+
+<body>
+
+<div class="container_admin_form">
+
+    <h3>Введите логин и пароль</h3>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes" style=color:tomato>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form method="post">
+
+        <div class="column_one">
+            <div class="column_one_res">
+                <input type="text" name="login" class="admin_name" maxlength="50" placeholder="Введите логин" required>
+                <input type="password" name="password" class="admin_name" maxlength="50" placeholder="Введите пароль" required>
+            </div>
+
+        </div>
+
+    
+        <input class="admin_button" type="submit" value="Отправить">
+    </form>
+
+
+
+
+</div>
+
+
+
+</body>
+</html>

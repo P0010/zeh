@@ -1,0 +1,152 @@
+//container
+.red{display: none;}
+.header {
+    background-color: $gray;
+    border-bottom: 0.3px solid #333333;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    min-width: 370px;
+    z-index: 3;
+}
+
+.container{
+    column-gap:30px;
+    justify-content: space-between;
+    @extend %container;
+    position: relative;
+}
+
+
+
+//logo-menu
+
+.logo_menu{
+   flex-shrink: 1;
+   flex-grow: 1;
+   column-gap: 15px;
+   display:flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.logo img{
+    width: 100%;
+}
+
+//mobile menu
+
+.mobile_menu{
+    display:none;
+    
+    img {width: 100%;}
+    @media screen and (max-width:794px){
+        &{display: inline;}
+    }
+}
+
+
+
+//menu
+
+.menu{
+    flex-shrink: 2;
+    display: flex;
+    flex-basis: 800px;
+    justify-content: space-between;
+    column-gap: 20px;
+    font-size: 24px;
+
+    @media screen and (max-width:953px) {
+        &{font-size: 16px;}
+    }
+    @media screen and (max-width:794px) {
+        &{display: none;}
+    }
+
+    a {color: $white;}
+
+    //hover
+
+    li{position: relative;}
+
+    li::before{
+        content: "";
+        bottom: -5px;
+        left: 0;
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        background-color: $green;
+        transition: 0.2s;
+    }
+
+    li:hover:before{
+        width: 100%;
+    }
+
+    li a:hover{
+        color:$green;
+    }
+
+}
+
+
+
+// Contact
+
+.contact {
+    display: flex;
+    min-width: 230px;
+    justify-content: space-between;
+    align-items: center;
+    
+    @media screen and (max-width: 444px){
+        &{
+            min-width: 190px;
+        }
+    }
+}
+
+
+.contact__social {
+    a{margin-left: 10px;}
+    
+    a:nth-child(2):hover svg path{
+        fill: #247ff7;
+    }
+
+    a:nth-child(1):hover svg path{
+        fill: #15f520;
+    }
+
+    svg path{
+        transition: all .3s ease-in;
+    }
+
+    @media screen and (max-width: 444px){
+        &{
+            max-width: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 5px;
+        }
+    }
+}
+
+
+
+//phone
+
+.contact_phone a{
+    color: $green;
+    line-height: 20px;
+    @media screen and (max-width:444px){
+        &{
+            line-height: 27px;
+        }
+    }
+}
+
+
+

@@ -1,0 +1,40 @@
+{% extends 'admin_layout.html' %}
+
+
+
+{% block body %}
+
+    <div class="container_admin_form">
+        <div class="grid">
+    
+            {%- for item in categories.children recursive %}
+            <div class="item">
+                <div class="content">
+                    
+                    <div class="del_category"><a href="{{ url_for('category_delete', category_id=item.id) }}"><img src="{{ url_for('static', filename='images/admin/del.svg')}}"></a></div>
+                        <a class="category" href="{{url_for('update_category', id=item.id)}}">{{ item.name }}</a>
+    
+                        {% for pink in item.items %}
+                                <div class="product1"><div class="del"><a href="{{ url_for('post_delete', id=pink.id) }}"><img src="{{ url_for('static', filename='images/admin/del.svg')}}"></a></div><a href="{{url_for('update_product', id=pink.id)}}">{{pink.name}}</a></div>
+                        {% endfor %}
+                
+                        {%- if item.children -%}
+                            <div class="submenu">{{ loop(item.children) }}</div>
+                        {%- endif %}
+                    
+                </div>
+            </div>
+            {%- endfor %}
+    
+     
+    
+        </div>
+    </div>
+
+    {% endblock %}
+
+
+
+
+
+

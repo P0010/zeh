@@ -1,0 +1,56 @@
+$white: #FFFFFF;
+$green: #B0CB1F;
+$gray: #202020;
+$black: #000000;
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 25px;
+    color: $white;
+    background-color: $gray;
+}
+
+p span {
+    font-weight:700;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 57px;
+    color: $green;
+    z-index: 1;
+}
+
+h2 {
+    color:#161616;
+    font-weight: 700;
+    font-size: 26px;
+    margin-bottom: 15px;
+    text-shadow: 
+    -1px 0 0 #B0CB1F, /* Тень влево */
+    0 -1px 0 #B0CB1F, /* Тень вверх */
+    1px 0 0 #B0CB1F, /* Тень вправо */
+    0 1px 0 #B0CB1F; /* Тень вниз */
+}
+
+h3{
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+    span {
+        background-color: $green;
+    }
+}
+
+%container{
+    display: flex;
+    max-width: 1441px;
+    min-width: 370px;
+    padding: 25px 30px 25px 30px;
+    align-items: center;
+    margin: 0 auto;
+
+}

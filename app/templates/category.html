@@ -1,0 +1,72 @@
+{% extends 'admin_layout.html' %}
+
+
+
+{% block body %}
+<div class="container_admin_form">
+
+    <h3>Новый раздел</h3>
+
+    <form method="post" enctype=multipart/form-data>
+
+        <div class="column_one">
+            <div class="column_one_res">
+                <input type="text" name="name" class="admin_name" maxlength="50" placeholder="Введите название(до 50 символов)" required>
+                <!-- <input type="hidden" name="parent_id" value="1"> -->
+                <select name="category_id">
+                    <option value="1">Главная папка</option>
+                    {%- for item in categories.children recursive %}
+                        <option value="{{item.id}}">{{item.level|int * '-'}}{{item.name}}</option>
+                        {%- if item.children -%}
+                            <p>{{ loop(item.children) }}</p>
+                            <option disabled></option>
+                        {%- endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <textarea name="text" maxlength="1500" placeholder="Введите текст интро (до 1500 символов)" required></textarea>
+            <label for="file-upload" class="custom-file-upload">
+                 Загрузить картинку
+            </label>
+            <input id="file-upload" type=file name=file required>
+            <input type="text" name="alt"  maxlength="50" placeholder="Введите название картинки (alt без цифр)" required>
+            <div class="column_one_res">
+                <input type="text" name="title" class="admin_name" maxlength="200" placeholder="Введите тег title" required>
+                <input type="text" name="description" class="admin_name" maxlength="300" placeholder="Введите тег description" required>
+            </div>
+        </div>
+
+    
+        <input class="admin_button" type="submit" value="Создать">
+    </form>
+
+
+    <div class="container__adm">
+        <div class="grid">
+    
+            {%- for item in categories.children recursive %}
+            <div class="item">
+                <div class="content">
+                         
+                        <a class="category" href="{{url_for('catid', url=item.url)}}">{{ item.name }}</a>
+    
+                        {% for pink in item.items %}
+                                <div class="product1"><a href="{{url_for('product', url_cat=item.url, url=pink.url)}}">{{pink.name}}</a></div>
+                        {% endfor %}
+                
+                        {%- if item.children -%}
+                            <div class="submenu">{{ loop(item.children) }}</div>
+                        {%- endif %}
+                    
+                </div>
+            </div>
+            {%- endfor %}
+    
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}
+
+

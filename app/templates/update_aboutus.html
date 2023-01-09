@@ -1,0 +1,188 @@
+{% extends 'admin_layout.html' %}
+
+
+
+{% block body %}
+
+
+<div class="container_admin_form">
+
+    <h3>О нас</h3>
+
+    {% if ab %}
+    <form method="post" enctype=multipart/form-data>
+
+        <div class="column_one">
+            <div class="count_one">1</div>
+            <div id="profile">
+                <div id="input_price" class="input_red">
+                    <p>Количество сутрудников:</p>
+                    <input type="text" name="num_employees" maxlength="50" value="{{ab.num_employees}}" required>
+                    <p>Количество филиалов:</p>
+                    <input type="text" name="branches" maxlength="50" value="{{ab.branches}}" required>
+                </div>
+                <input type="text" name="title" maxlength="200" value="{{ ab.title }}" required>
+                <textarea type="text" name="description" maxlength="300">{{ ab.description }}</textarea>
+            </div>
+        </div>
+
+        <input class="admin_button" type="submit" value="Сохранить">
+
+    </form>
+    {% else %}
+
+    <form method="post" enctype=multipart/form-data>
+
+        <div class="column_one">
+            <div class="count_one">1</div>
+            <div id="profile">
+                <div id="input_price" class="input_red">
+                    <input type="text" name="num_employees" maxlength="50" placeholder="Введите количество сотрудников" required>
+                    <input type="text" name="branches" maxlength="50" placeholder="Введите количество филиалов" required>
+                </div>
+            </div>
+        </div>
+
+        <input class="admin_button" type="submit" value="Сохранить">
+
+    </form>
+
+    {% endif %}
+
+    <form method="post" action="{{ url_for('image_upload') }}" enctype=multipart/form-data>
+        <div class="column_one">
+            <div class="count_one">2</div>
+            <div id="profile1">
+                <div id="input_price" class="input_red">
+                    <input type="text" name="foundation" class="admin_name" maxlength="50" placeholder="Введите название благотворительного фонда(до 50 символов)" required>
+                    <label for="file-upload" class="custom-file-upload">
+                        Выбрать картинку
+                    </label>
+                   <input  id="file-upload" type=file name=file required>
+                </div>
+            </div>
+        </div>
+
+        <input class="admin_button" type="submit" value="Загрузить">
+    </form>
+
+       
+    <h3>Удалите ненужные фонды</h3>
+    <div class="suggestion1">
+        {% for img in ab.foundation %}
+       
+        <div class="suggestion__product1">
+            <div class="check">
+                <a href="{{ url_for('del_image_foundation', id=img.id)}}" style="color: white;">Удалить</a>
+            </div>
+            <img src="{{ url_for('static', filename='images/product/')}}{{ img.filename }}" alt="">
+            <p>{{ img.name }}</p>
+        </div>
+
+        {% endfor %}
+    </div>
+
+
+    <form method="post" action="{{ url_for('equipments') }}" enctype=multipart/form-data>
+        <div class="column_one">
+            <div class="count_one">3</div>
+            <div id="profile1">
+                <div id="input_price" class="input_red">
+                    <input type="text" name="equipments" class="admin_name" maxlength="50" placeholder="Введите название оборудования" required>
+                </div>
+            </div>
+        </div>
+
+        <input class="admin_button" type="submit" value="Загрузить">
+    </form>
+
+    <div class="del_cases">
+        {% for eq in ab.equipment %}
+        <div class="del_case">
+            <a href="{{ url_for('equipment_delete', id=eq.id) }}"><img src="{{ url_for('static', filename='images/admin/del_red.svg') }}"></a>
+            <a href="{{ url_for('contacts') }}">{{ eq.equip }}</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <form method="post" action="{{ url_for('image_upload_employees') }}" enctype=multipart/form-data>
+        <div class="column_one">
+            <div class="count_one">4</div>
+            <div id="profile1">
+                <div id="input_price" class="input_red">
+                    <input type="text" name="employees" class="admin_name" maxlength="100" placeholder="Введите Имя Фамилию и должность сотрудника" required>
+                    <label for="file-uplo" class="custom-file-upload">
+                        Выбрать картинку
+                    </label>
+                   <input  id="file-uplo" type=file name=file required>
+                </div>
+            </div>
+        </div>
+
+        <input class="admin_button" type="submit" value="Загрузить">
+    </form>
+
+    <h3>Удалите сотрудника</h3>
+    <div class="suggestion1">
+        {% for img in ab.employees %}
+       
+        <div class="suggestion__product1">
+            <div class="check">
+                <a href="{{ url_for('del_image_employees', id=img.id)}}" style="color: white;">Удалить</a>
+            </div>
+            <img src="{{ url_for('static', filename='images/product/')}}{{ img.filename }}" alt="">
+            <p>{{ img.name }}</p>
+        </div>
+
+        {% endfor %}
+    </div>
+
+
+    <form method="post" action="{{ url_for('image_upload_awards') }}" enctype=multipart/form-data>
+        <h3>Добавьте Награды</h3>
+        <div class="column_one">
+            <div class="count_one">5</div>
+            <div id="profile1">
+                <div id="input_price" class="input_red">
+                    <label for="file-upl" class="custom-file-upload">
+                        Выбрать картинку
+                    </label>
+                   <input  id="file-upl" type=file name=file required>
+                </div>
+            </div>
+        </div>
+
+        <input class="admin_button" type="submit" value="Загрузить">
+    </form>
+
+    <h3>Удалите Награды</h3>
+    <div class="suggestion1">
+        {% for img in ab.awards %}
+       
+        <div class="suggestion__product1">
+            <div class="check">
+                <a href="{{ url_for('del_image_awards', id=img.id)}}" style="color: white;">Удалить</a>
+            </div>
+            <img src="{{ url_for('static', filename='images/product/')}}{{ img.filename }}" alt="">
+        </div>
+
+        {% endfor %}
+    </div>
+    
+
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

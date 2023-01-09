@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.scss.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon/favicon.ico') }}">
+    <title></title>
+</head>
+
+<body>
+    <div class="admin_header">
+        <div class="admin_header_container">
+            <a href="{{ url_for('index')}}" class="logo"><img src="{{ url_for('static', filename='images/admin/zeh_logo_black.svg')}}" alt="Цех"></a>
+            
+            <ul class="admin_menu">
+                <li><a href="{{ url_for('new_product') }}">новый <br>продукт</a></li>
+                <li><a href="{{ url_for('category') }}">новая <br>категория</a></li>
+                <li><a href="{{ url_for('update') }}">редактировать/<br>удалить страницу</a></li>
+                <li><a href="{{ url_for('product_category') }}">переместить <br>продукт</a></li>
+                <li><a href="{{ url_for('category_red') }}">переместить <br>разделы</a></li>
+                <li><a href="{{ url_for('admin_index') }}">главная <br>страница</a></li>
+            </ul>
+            <a href="#" class="mobile_admin_menu"><img src="{{ url_for('static', filename='images/admin/menu.svg')}}" alt="Меню"></a>
+        </div>
+    </div>
+
+    <div class="menu_cases">
+        <a href="{{ url_for('new_cases') }}">+Новый кейс</a>
+        <a href="{{ url_for('new_contact') }}">Контакты</a>
+        <a href="{{ url_for('update_aboutus') }}">О нас</a>
+        <a href="{{ url_for('client') }}">Заявки</a>
+    </div>
+
+
+    {% block body %}
+    
+    {% endblock %}
+
+    
+
+
+    <script src="{{ url_for('static', filename='js/catalog.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/settings.js')}}"></script>
+</body>
+</html>

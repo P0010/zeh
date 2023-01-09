@@ -1,0 +1,46 @@
+//General
+@import "index/_reset.scss" ;
+@import "index/_settings.scss";
+@import "index/_header.scss";
+@import "index/_footer.scss";
+
+//index
+@import "index/_main.scss";
+@import "index/_pluses.scss";
+@import "index/_individual_form.scss";
+@import "index/_benefits.scss";
+@import "index/_jobs.scss";
+
+//catalog
+@import "catalog/_catalog.scss";
+@import "catalog/_bigcontact.scss";
+@import "catalog/_pop_up.scss";
+@import "catalog/_threemoment.scss";
+@import "catalog/_question.scss";
+
+//product
+@import "product/_breadcrumbs.scss";
+@import "product/_product.scss";
+
+//admin
+@import "admin/_admin.scss";
+
+//cases
+@import "cases/_cases.scss";
+
+//politica
+@import "index/_politica.scss";
+
+//contacts
+@import "contacts/_contacts.scss";
+
+//about_us
+@import "about_us/_about_us.scss";
+
+//client
+@import "client/_client.scss";
+
+//update_product
+@import "update_product/_update_product.scss"
+
+

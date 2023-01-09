@@ -1,0 +1,78 @@
+{% extends 'admin_layout.html' %}
+
+
+
+{% block body %}
+
+
+<div class="container_admin_form">
+
+    <h3>{{ contact.name }}</h3>
+
+    <form method="post" enctype=multipart/form-data>
+
+        <div class="column_one">
+            <div class="count_one">1</div>
+            <div class="column_one_res">
+                <input type="text" name="address" class="admin_name" maxlength="70" placeholder="Введите адрес" value="{{ contact.address }}" required>
+                <input type="text" name="name" class="admin_name" maxlength="50" placeholder="Введите название(Пример:Цех на Проспекте)" value="{{ contact.name }}" required>
+                <input type="text" name="email" class="admin_name" maxlength="50" placeholder="Введите e-mail" value="{{ contact.email }}" required>
+            </div>
+        </div>
+
+        <div class="column_one">
+            <div class="count_one">2</div>
+            <div class="column_one_res">
+                <input type="text" name="weekdays" class="admin_name" maxlength="50" placeholder="Укажите время в рабочие дни(Пример: 09:00-21:00)" value="{{ contact.weekdays }}" required>
+                <input type="text" name="saturday" class="admin_name" maxlength="50" placeholder="Суббота (Пример: 10:00-17:00)" value="{{ contact.saturday }}" required>
+                <input type="text" name="sunday" class="admin_name" maxlength="50" placeholder="Воскресенье(Пример: Выходной)" value="{{ contact.sunday }}" required>
+            </div>
+        </div>
+
+        <div class="column_one">
+            <div class="count_one">3</div>
+            <textarea name="script" maxlength="1000" placeholder="Введите скрипт яндекса карт (yandex.ru/map-constructor/) высота 411px" require>{{ contact.script }}</textarea>
+        </div>
+
+        <input class="admin_button" type="submit" value="Сохранить">
+
+    </form>
+
+    <form action="{{ url_for('update_phone', id=contact.id) }}" method="post">
+        <div class="column_one">
+            <div class="count_one">4</div>
+            {% for phone in contact.phones %}
+               <div style="position:relative">
+                    <input style="width: 100%;" type="text" name="phone" maxlength="50" placeholder="Введите номер телефон, пример +7 (999) 999 99 99" value="{{ phone.phone }}" required>
+                    <a href="{{ url_for('phone_delete', id=phone.id) }}" style="position:absolute; right:5px; top: 8px"><img src="{{ url_for('static', filename='images/admin/del_red.svg') }}"></a>
+               </div>
+            {% endfor %}
+            <input class="admin_button" type="submit" value="Сохранить">
+        </div>
+    </form>
+
+    <form action="{{ url_for('new_phone', id=contact.id) }}" method="post">
+       <div class="column_one">
+            <div class="count_one">5</div>
+            <div id="profile">
+                <div id="input0">
+                    <textarea name="phone" maxlength="400" placeholder="Введите номер телефон, пример +7 (999) 999 99 99" require></textarea>
+                </div>
+            </div>
+            <div class="row_counter">
+                <div class="counter" onclick="addInput_phone()">+ Добавить</div>
+                <div class="counter" onclick="delInput_phone()">- Удалить</div>
+            </div>
+        </div>
+
+        <input class="admin_button" type="submit" value="Сохранить">
+    </form>
+    
+    
+
+</div>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,65 @@
+{% extends 'admin_layout.html' %}
+
+{% block body %}
+<div class="container_admin_form">
+    <h3>Переместить раздел</h3>
+    <form method="post" enctype=multipart/form-data>
+        <div class="column_one">
+            <p>Раздел отключён, во избежания поломки базы</p>
+            <div class="column_one_res">
+
+        <select name="parent">
+            <option value="1">Главная папка</option>
+            {%- for item in categories.children recursive %}
+                <option value="{{item.id}}">{{item.level|int * '-'}}{{item.name}}</option>
+                {%- if item.children -%}
+                    <p>{{ loop(item.children) }}</p>
+                    <option disabled></option>
+                 {%- endif %}
+            {% endfor %}
+        </select>
+
+        <select name="child">
+            {%- for item in categories.children recursive %}
+                <option value="{{item.name}}">{{item.level|int * '-'}}{{item.name}}</option>
+                {%- if item.children -%}
+                    <p>{{ loop(item.children) }}</p>
+                    <option disabled></option>
+                 {%- endif %}
+            {% endfor %}
+        </select>
+
+    </div>
+
+</div>
+
+        <input class="admin_button" type="submit" value="Переместить" style="background-color: rgb(131, 131, 131) ;" disabled>
+
+    </form>
+
+    <div class="container__adm">
+        <div class="grid">
+    
+            {%- for item in categories.children recursive %}
+            <div class="item">
+                <div class="content">
+                         
+                        <a class="category" href="{{url_for('catid', url=item.url)}}">{{ item.name }}</a>
+    
+                        {% for pink in item.items %}
+                                <div class="product1"><a href="{{url_for('product', url_cat=item.url, url=pink.url)}}">{{pink.name}}</a></div>
+                        {% endfor %}
+                
+                        {%- if item.children -%}
+                            <div class="submenu">{{ loop(item.children) }}</div>
+                        {%- endif %}
+                    
+                </div>
+            </div>
+            {%- endfor %}
+    
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+.individual_form {
+    min-width: 370px;
+    background-image: url("../images/individual_form/monkey.png");
+    background-color:$black;
+    background-repeat:no-repeat;
+    background-size: 60%;
+    background-position-x: 45%;
+    background-position-y: 60%;
+}
+
+.container_form {
+    @extend %container;
+    padding: 130px 30px 130px 30px;
+    max-width: 1200px;
+    min-width: 370px;
+    justify-content: flex-start;
+
+    @media screen and(max-width:813px) {
+        justify-content:center;
+        padding: 70px 30px 70px 30px;
+    }
+}
+

@@ -1,0 +1,251 @@
+{% extends 'admin_layout.html' %}
+
+
+
+{% block body %}
+
+
+<div class="container_admin_form">
+
+    <h3>Редактирование продукта</h3>
+
+    <form action="{{ url_for('product_reride', id=product.id) }}" method="post" enctype=multipart/form-data>
+
+        <div class="column_one">
+            <div class="count_one">1</div>
+            <div class="column_one_res">
+                <input type="text" name="name" class="admin_name" maxlength="50" value="{{ product.name }}" required>
+            </div>
+            <textarea name="intro" maxlength="1500" require>{{ product.intro }}</textarea>
+            <input type="text" name="title" maxlength="200" value="{{ product.title }}" required>
+            <input type="text" name="description" maxlength="300" value="{{ product.description }}" " required>
+            <input class="admin_button" type="submit" value="Сохранить">
+        </div>
+    </form>
+
+    <form action="{{ url_for('product_image_upload', id=product.id) }}" method="post" enctype=multipart/form-data>
+        <div class="column_one">
+            <div class="count_one">2</div>
+            <div id="profile">
+                <div id="inputadm" class="input_red">
+                    <input type="text" name="alt" class="admin_n" maxlength="50" placeholder="Введите название картинки (alt)" required>
+                    <label for="file-upload" class="custom-file-upload">
+                        Загрузить картинку
+                    </label>
+                    <input id="file-upload" type=file name=file required>
+                    <input class="admin_button" type="submit" value="Сохранить">
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form>
+        <div class="column_one">
+        Удалите ненужные фото
+        <div class="suggestion1 sug2">
+            
+            {% for img in product.items %}
+            
+            <div class="suggestion__product1">
+                <div class="check">
+                    <a href="{{ url_for('del_image_product', id=img.id)}}" style="color: white;">Удалить</a>
+                </div>
+                <img src="{{ url_for('static', filename='images/product/new_product/')}}{{ img.filename }}" alt="">
+                Alt: {{img.alt}}
+            </div>
+    
+            {% endfor %}
+
+        </div>
+        </div>
+    </form>
+
+   
+
+    <form>
+    <div class="column_one ">
+        <p>Удалите ненужные строки из прайса</p>
+        <div class="count_one">4</div>
+        <div id="profile">
+            {% for price in product.price %}
+            <div class="input_red">
+                <input type="text" name="name_price" class="admin_n" maxlength="50" value="{{ price.name_price }}" required disabled>
+                <input type="number" name="price" class="admin_n input-number" maxlength="20" value="{{ price.price }}" required disabled>
+                <a href="{{ url_for('del_price', id=price.id) }}" style="position:absolute; right:5px; top: 8px"><img src="{{ url_for('static', filename='images/admin/del_red.svg') }}"></a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </form>
+    
+
+    <form action="{{ url_for('new_price', id=product.id) }}" method="post">
+        <div class="column_one">
+            <div class="count_one">5</div>
+            <div id="profile1">
+                <div id="input_price" class="input_red">
+                    <input type="text" name="name_price" class="admin_n" maxlength="50" placeholder="Введите название(до 50 символов)" required>
+                    <input type="number" name="price" class="admin_n input-number" maxlength="20" placeholder="Введите цену" required>
+                </div>
+            </div>
+            <div class="row_counter">
+                <div class="counter" onclick="AInput_price()">+ Добавить</div>
+                <div class="counter" onclick="DInput_price()">- Удалить</div>
+            </div>
+            <input class="admin_button" type="submit" value="Сохранить">
+        </div>
+    </form>
+    
+    
+    <form action="{{ url_for('new_text', id=product.id) }}" method="post">
+        <div class="column_one">
+            <div class="count_one">6</div>
+            <textarea name="text" maxlength="1500"  require>{{ product.text }}</textarea>
+            <input class="admin_button" type="submit" value="Сохранить">
+        </div>
+    </form>
+
+    <form action="{{ url_for('new_suggestion', id=product.id) }}" method="post">
+        <div class="column_one">
+            Выберети допродажи к товару (желательно не более 5)
+            <div class="count_one">7</div>
+            <div id="profile2">
+                <div id="input0" class="input_sug">
+                    <select name="suggestion" multiple size="10">
+                        {%- for item in categories.children recursive %}
+
+                            <option disabled>{{item.level|int * '-'}}{{item.name}}</option>
+        
+                            {% for pink in item.items %}
+                                    <option value="{{pink.id}}">{{item.level|int * '◦'}}{{pink.name}}</option>
+                            {% endfor %}
+        
+                            {%- if item.children -%}
+                                <p>{{ loop(item.children) }}</p>
+                                <option disabled></option>
+                            {%- endif %}
+    
+                        {% endfor %}
+                    </select>
+                </div>
+
+            </div>
+            <input class="admin_button" type="submit" value="Сохранить">
+            <h3>Удалите ненужные товары:</h3>
+            <div class="suggestion sug2">
+                
+                {% for sug in product.suggestion %}
+                <div class="suggestion__product1">
+                    <div class="check">
+                        <a href="{{ url_for('del_suggestion', id=product.id, suggestion=sug.id)}}" class="suggestion__product">Удалить</a>
+                    </div>
+                    {% if sug.product1.items[0] %}
+                    <img src="{{ url_for('static', filename='images/product/new_product/')}}{{ sug.product1.items[0].filename }}" alt="{{ sug.product1.name }}">
+                    {% endif %}
+                    <p>{{ sug.product1.name }}</p>
+                </div>
+                {% endfor %}
+    
+            </div> 
+        </div>
+    </form>
+
+
+    {% for key in product.keys %}
+    <form action="{{ url_for('update_end_text', id=key.id) }}" method="post">
+        <div class="column_one">
+            <a href="{{ url_for('del_key', id=key.id)}}" style="position:absolute; right: 2px; top: 1px"><img src="{{ url_for('static', filename='images/admin/del_red.svg') }}"></a>
+            <div class="count_one">8</div>
+            <input type="text" name="title" maxlength="50" placeholder="Введите заголовок конечного текста(можно пропустить)" value="{{ key.title }}">
+            <textarea name="text" maxlength="3000" placeholder="Введите конечный текст (до 3000 символов)" >{{ key.text }}</textarea>
+            <input class="admin_button" type="submit" value="Сохранить">
+
+            <div class="suggestion1 sug2">
+                {% for img in key.images %}
+                
+                <div class="suggestion__product1">
+                    <img src="{{ url_for('static', filename='images/product/keys/')}}{{ img.filename }}" alt="">
+                    Alt: {{img.alt}}
+                </div>
+        
+                {% endfor %}
+            </div>
+
+        </div>
+    </form>
+    {% endfor %}
+
+    <form action="{{ url_for('new_key', id=product.id) }}" method="post" enctype=multipart/form-data>
+    <div class="column_one">
+        <div class="count_one">6</div>
+        <input type="text" name="title1" maxlength="50" placeholder="Введите заголовок конечного текста" required>
+        <textarea name="text1" maxlength="3000" placeholder="Введите конечный текст (до 3000 символов)" required></textarea>
+        
+        <div id="inputadm" class="input_red">
+            <input type="text" name="alt1" class="admin_n" maxlength="50" placeholder="Введите название картинки (alt) (цифры не пишем) " required>
+            <label for="file-upload1" class="custom-file-upload">
+                Загрузить картинку
+            </label>
+            <input id="file-upload1" type=file name=file1 required>
+        </div>
+
+        <div id="inputadm" class="input_red">
+            <input type="text" name="alt2" class="admin_n" maxlength="50" placeholder="Введите название картинки (alt) (цифры не пишем)" required>
+            <label for="file-upload2" class="custom-file-upload">
+                Загрузить картинку
+            </label>
+            <input id="file-upload2" type=file name=file2 required>
+        </div>
+
+        <div id="inputadm" class="input_red">
+            <input type="text" name="alt3" class="admin_n" maxlength="50" placeholder="Введите название картинки (alt) (цифры не пишем)" required>
+            <label for="file-upload3" class="custom-file-upload">
+                Загрузить картинку
+            </label>
+            <input id="file-upload3" type=file name=file3 required>
+        </div>
+        <input class="admin_button" type="submit" value="Сохранить">
+        
+    </div>
+    </form>
+
+    <div class="container__adm">
+        <div class="grid">
+    
+            {%- for item in categories.children recursive %}
+            <div class="item">
+                <div class="content">
+                         
+                        <a class="category" href="{{url_for('catid', url=item.url)}}">{{ item.name }}</a>
+    
+                        {% for pink in item.items %}
+                                <div class="product1"><a href="{{url_for('product', url_cat=item.url, url=pink.url)}}">{{pink.name}}</a></div>
+                        {% endfor %}
+                
+                        {%- if item.children -%}
+                            <div class="submenu">{{ loop(item.children) }}</div>
+                        {%- endif %}
+                    
+                </div>
+            </div>
+            {%- endfor %}
+    
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

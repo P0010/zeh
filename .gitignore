@@ -1,0 +1,8 @@
+app/static/images/product
+app/test.db
+app/__pycache__
+migrations
+.env
+__pycache__
+env
+

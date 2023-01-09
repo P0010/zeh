@@ -1,0 +1,148 @@
+.pop_up{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(48, 48, 48, 0.925);
+    z-index: 60;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.pop_up.active{
+    display: flex;
+}
+
+.for_wrap{
+    position: relative;
+}
+
+#pop_up_close {
+    position: absolute;
+    right: 8px;
+    top: 6px;
+    cursor: pointer;
+}
+
+// pop-up form otvet
+
+.pop_up_otvet {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(48, 48, 48, 0.925);
+    z-index: 60;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.pop_up_otvet.active{
+    display: flex;
+}
+
+#otvet_close {
+    position: absolute;
+    right: -38px;
+    top: -6px;
+}
+
+.tomato_otvet {
+    background-color: white;
+    max-width: 340px;
+    color: black;
+    padding: 20px;
+    position: relative;
+    border-radius: 10px;
+    margin: 0 40px;
+    border: 4px solid tomato;
+}
+
+.white_otvet {
+    background-color: white;
+    max-width: 340px;
+    color: black;
+    padding: 20px;
+    position: relative;
+    border-radius: 10px;
+    margin: 0 40px;
+}
+
+// menu catalog
+
+.pop_up_catalog{
+    width: 100%;
+    max-width: 2000px;
+    height: 90vh;
+    position:absolute;
+    left: 0px;
+    top: 95px;
+    background-color: rgba(48, 48, 48, 0.925);
+    z-index: 2;
+    visibility: hidden;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    overflow:auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.668);
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+    @media screen and(max-width:794px) {
+        top:115px;
+    }
+}
+.pop_up_catalog.active{
+    visibility:visible;
+}
+
+#catalog_close {
+    position: fixed;
+    right: 20px;
+    top: 100px;
+    z-index: 3;
+    
+    @media screen and(max-width:794px) {
+        top:140px;
+    }
+
+}
+
+
+// menu mobile
+
+.pop_up_mobilmenu.active {
+    display: flex;
+    position: absolute;
+    background-color: rgba(48, 48, 48, 0.925);
+    width: 100%;
+    top: 85px;
+    left: 0px;
+    padding: 10px 15px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+    z-index: 4;
+}
+
+// animations close
+.close_set {
+    :nth-child(1) {
+        cursor: pointer;
+    }
+    
+    :nth-child(1):hover path {
+        fill: $green;
+        animation: rotate 2s;
+        transform: rotate(18deg)
+    }
+
+    :nth-child(1) path{
+        transition: all .1s ease-in;
+    }
+}

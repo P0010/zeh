@@ -1,0 +1,31 @@
+{% extends 'admin_layout.html' %}
+
+
+
+{% block body %}
+
+    <div class="container_admin_form">
+
+        <h3>Главная страница</h3>
+
+        <div class="table_client">
+            <div>Имя</div>
+            <div>Телефон</div>
+            <div>Страница</div>
+            <div>Дата</div>
+
+            {% for client in clients %}
+            <div>{{ client.name }}</div>
+            <div>{{ client.phone }}</div>
+            <div>{{ client.site }}</div>
+            <div class="date">{{ client.date.date() }}
+                <a href="{{ url_for('client_del', id=client.id) }}"><img src="{{ url_for('static', filename='images/admin/del_red.svg') }}"></a>
+            </div>
+            {% endfor %}
+            
+        </div>
+        
+
+    </div>
+
+{% endblock %}
