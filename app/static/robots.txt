@@ -1,0 +1,6 @@
+User-agent: *
+
+Disallow: /admin
+Disallow: /politica
+
+Sitemap: https://site.com/sitemap.xml
