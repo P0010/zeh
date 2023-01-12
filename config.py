@@ -8,6 +8,8 @@ load_dotenv(path.join(basedir, '.env'))
 class Config:
     SECRET_KEY = environ.get('SECRET_KEY')
     API_TOKEN = environ.get('API_TOKEN') 
+    PASSWORD_MAIL = environ.get('PASSWORD_MAIL')
+    EMAIL = 'zeh@zeh-ufa.ru'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'gif'}
     

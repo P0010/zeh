@@ -11,6 +11,7 @@ from app import app, db, allowed_file
 from app.models_main import Category, Product, Images, Price, Suggestion, Social, Index_product, User
 from app.models_cases import Cases, CasesTitle, Contacts, ContactsTitle, Aboutus, Clients
 from app.telegr import somefunc
+from app.mail import send_email
 
 now = datetime.datetime.now()  # Дата
 
@@ -28,6 +29,7 @@ def index():
         topic = request.form['topic']
         if phone != '':
             asyncio.run(somefunc(name, phone, topic))
+            send_email(name, phone, topic)
             client = Clients(name=name, phone=phone, site=topic)
             try:
                 db.session.add(client)
@@ -40,12 +42,30 @@ def index():
     else:
         return render_template('index.html', categories=categories, ind=ind, ind_pr=ind_pr, now=now)
 
-@app.route('/catalog')
+
+@app.route('/catalog', methods = ['POST', 'GET'])
 def catalog():
     ind = Social.query.first()
     categories = Category.query.filter(Category.name=='root').first()
     contacts = Contacts.query.all()
-    return render_template('catalog.html', categories=categories, ind=ind, now=now, contacts=contacts)
+    if request.method == 'POST':
+        name = request.form['name']
+        phone = request.form['phone']
+        topic = request.form['topic']
+        if phone != '':
+            asyncio.run(somefunc(name, phone, topic))
+            send_email(name, phone, topic)
+            client = Clients(name=name, phone=phone, site=topic)
+            try:
+                db.session.add(client)
+                db.session.commit()
+                return render_template('catalog.html', happy='Данные успешно отправленны', categories=categories, ind=ind, now=now, contacts=contacts )
+            except:
+                return 'Произошла ошибка'
+        else:
+            return render_template('catalog.html', happy='Пожалуйста заполните все формы', categories=categories, ind=ind, now=now, contacts=contacts)
+    else:
+        return render_template('catalog.html', categories=categories, ind=ind, now=now, contacts=contacts)
 
 
 
@@ -66,6 +86,7 @@ def catid(url):
         topic = request.form['topic']
         if phone != '':
             asyncio.run(somefunc(name, phone, topic))
+            send_email(name, phone, topic)
             client = Clients(name=name, phone=phone, site=topic)
             try:
                 db.session.add(client)
@@ -93,6 +114,7 @@ def product(url_cat, url):
         topic = request.form['topic']
         if phone != '':
             asyncio.run(somefunc(name, phone, topic))
+            send_email(name, phone, topic)
             client = Clients(name=name, phone=phone, site=topic)
             try:
                 db.session.add(client)
@@ -118,6 +140,7 @@ def cases():
         phone = request.form['phone']
         topic = request.form['topic']
         asyncio.run(somefunc(name, phone, topic))
+        send_email(name, phone, topic)
         client = Clients(name=name, phone=phone, site=topic)
         try:
             db.session.add(client)
@@ -143,6 +166,7 @@ def case(url_case):
         phone = request.form['phone']
         topic = request.form['topic']
         asyncio.run(somefunc(name, phone, topic))
+        send_email(name, phone, topic)
         client = Clients(name=name, phone=phone, site=topic)
         try:
             db.session.add(client)
@@ -166,6 +190,7 @@ def contacts():
         phone = request.form['phone']
         topic = request.form['topic']
         asyncio.run(somefunc(name, phone, topic))
+        send_email(name, phone, topic)
         client = Clients(name=name, phone=phone, site=topic)
         try:
             db.session.add(client)
@@ -189,6 +214,7 @@ def aboutus():
         phone = request.form['phone']
         topic = request.form['topic']
         asyncio.run(somefunc(name, phone, topic))
+        send_email(name, phone, topic)
         client = Clients(name=name, phone=phone, site=topic)
         try:
             db.session.add(client)
