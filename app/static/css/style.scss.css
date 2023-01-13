@@ -961,6 +961,11 @@ h3 {
 .open_pop_up {
   cursor: pointer; }
 
+.offbutton {
+  display: none; }
+  @media screen and (max-width: 570px) {
+    .offbutton {
+      display: initial; } }
 .pop_up {
   width: 100%;
   height: 100%;

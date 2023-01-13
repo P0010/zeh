@@ -19,10 +19,6 @@
 <div class="product_one">
     <div class="product_one__container">
         <h3>{{bread.name}}</h3>
-        <div class="intro">
-            <div class="intro_text">{{bread.intro | safe}}</div>
-            <button class="open_pop_up">Перезвоните мне</button>
-        </div>
         <div class="text">
             <div class="slider">
                 {% for img in bread.items %}
@@ -67,6 +63,10 @@
                 </div>
 
             </div>
+        </div>
+        <div class="intro">
+            <div class="intro_text">{{bread.intro | safe}}</div>
+            <button class="open_pop_up offbutton">Перезвоните мне</button>
         </div>
 
         
