@@ -52,7 +52,7 @@
                 <div class="user-box">
                   <input type="text" name="phone" required>
                   <label>Ваш телефон</label>
-                  <input class="tab2" type="hidden" name="topic"  value="Главная страница, Индивидуальный расчёт" required>
+                  <input class="tab2" type="hidden" name="topic"  value="{{ catid.name }}" required>
                 </div>
                 <input type="submit" class="form__button" >
                 <div class="terms">Я принимаю <a href="{{url_for('politica')}}">условия</a> передачи информации.</div>
