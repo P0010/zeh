@@ -40,9 +40,29 @@
         </div>
     </div>
 
-    <div class="text_three__container">
-        <div class="mono">
-            {{catid.text | safe }}
+
+    <div class="text_form">
+        <div class="form new_reddd">
+            <h3><span>&nbsp;Закажите&nbsp;</span><br> индивидуальный <br> расчёт</h3>
+            <form method="post" id="form-id2" class="js-form">
+                <div class="user-box">
+                  <input type="text" name="name" required>
+                  <label>Ваше имя</label>
+                </div>
+                <div class="user-box">
+                  <input type="text" name="phone" required>
+                  <label>Ваш телефон</label>
+                  <input class="tab2" type="hidden" name="topic"  value="Главная страница, Индивидуальный расчёт" required>
+                </div>
+                <input type="submit" class="form__button" >
+                <div class="terms">Я принимаю <a href="{{url_for('politica')}}">условия</a> передачи информации.</div>
+            </form>
+        </div>
+
+        <div class="text_three__container">
+            <div class="mono">
+                {{catid.text | safe }}
+            </div>
         </div>
     </div>
 
