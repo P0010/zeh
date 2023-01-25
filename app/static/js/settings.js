@@ -94,6 +94,31 @@ otvet_popup_active.forEach(function (item) {
    }
 });
 
+// pop up по таймеру 30 секундв
+// функция появления
+function greet () {
+  document.getElementsByClassName('pop_up1')[0].style.display = "flex";
+  // устанавливаем localstorage
+  localStorage.setItem('test', 1);
+}
+
+width = screen.width; // ширина окна
+console.log(width); // вывод в консоль
+
+// если localstorage не равно 1, включаем функцию greet через 4 секунды
+if (localStorage.getItem('test') != 1 & width<400) setTimeout (greet, 25000) ;
+
+// при клике мы выключаем pop up
+function rabbit () {
+  document.getElementsByClassName('pop_up1')[0].style.display = "none";
+}
+    
+// удаляем нажимая на id=del
+del.onclick = function() {
+  delete localStorage.test;
+}
+
+
 
 // Слайдер продукта (картинки)
 

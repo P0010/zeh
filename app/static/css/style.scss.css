@@ -686,7 +686,9 @@ h3 {
   background-size: 60%;
   background-position-x: 45%;
   background-position-y: 60%; }
-
+  @media screen and (max-width: 810px) {
+    .individual_form {
+      background-image: none; } }
 .container_form {
   padding: 130px 30px 130px 30px;
   max-width: 1200px;
@@ -1085,6 +1087,31 @@ h3 {
 
 .close_set :nth-child(1) path {
   transition: all .1s ease-in; }
+
+.pop_up1 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(48, 48, 48, 0.925);
+  z-index: 60;
+  display: none;
+  justify-content: center;
+  align-items: center; }
+
+#pop_up_close2 {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  cursor: pointer; }
+
+.but a {
+  background-color: black;
+  color: #B0CB1F;
+  padding: 20px 40px;
+  border: 1px solid;
+  border-color: #B0CB1F; }
 
 .threemoment {
   background-color: #202020; }

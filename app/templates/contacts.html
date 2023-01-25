@@ -24,7 +24,7 @@
                         <a href="tel:{{ phone.phone }}"><p>{{ phone.phone[0:8] }}<span>{{ phone.phone[8:] }}</span></p></a>
                     {% endfor %}
                 </div>
-                <div class="email">E-mail: <span>{{ contact.email }}</span></div>
+                <div class="email"><a href="mailto:{{ contact.email}}"><p>E-mail: <span>{{ contact.email }}</span><p></a></div>
                 <div class="clock">Время работы:</div>
                 <p>Понедельник-пятница: <span>{{ contact.weekdays }}</span></p>
                 <p>Суббота: <span>{{ contact.saturday }}</span></p>

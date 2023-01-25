@@ -67,7 +67,7 @@
 
         <div class="container">
 
-            <div class="logo_menu">
+            <div class="logo_menu" >
                 <a href="{{ url_for('index') }}" class="logo"><img src="{{ url_for('static', filename='images/menu/zeh_logo.svg')}}" alt="Цех"></a>
                 <a href="javascript:void(0);" class="mobile_menu open_pop_up_mobilmenu"><img src="{{ url_for('static', filename='images/menu/menu.svg')}}" alt="Меню"></a>
             </div>
@@ -90,7 +90,7 @@
                         </svg></a>
                 </div>
 
-                <div class="contact_phone">
+                <div class="contact_phone" id="del">
                     {% if ind %}
                     <a href="tel:{{ ind.phone1 }}"><p>{{ ind.phone1[0:7] }}<span>{{ ind.phone1[7:] }}</span></p></a>
                     <a href="tel:{{ ind.phone2 }}"><p>{{ ind.phone2[0:7] }}<span>{{ ind.phone2[7:] }}</span></p></a>
@@ -133,7 +133,7 @@
     {% endif %}
 
     <!--Попап-->
-    <div class="pop_up" id="pop_up" >
+    <div class="pop_up" id="pop_up">
         <div class="for_wrap">
             <img id="pop_up_close" src="{{ url_for('static', filename='images/catalog/close.svg')}}">
             <div class="form">
@@ -162,6 +162,18 @@
             </div>
         </div>
     </div>
+
+    <!-- Попап таймер 30 секунд -->
+    <div class="pop_up1" id="pop_up1" >
+        <div class="for_wrap">
+            <img id="pop_up_close2" onclick="rabbit()" src="{{ url_for('static', filename='images/catalog/close.svg')}}">
+            <div class="form">
+                <div><strong>Не нашли то, что вам нужно?</strong> Позвоните эксперту и мы придумаем техническое решение для вашего проекта! 😊</div>
+                <div class="but"><a href="tel:+7 917 441-61-65">Позвонить</a></div>
+            </div> 
+        </div>
+    </div>
+
 
     <footer class="footer">
         <div class="container__footer">

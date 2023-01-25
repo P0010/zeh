@@ -6,6 +6,9 @@
     background-size: 60%;
     background-position-x: 45%;
     background-position-y: 60%;
+    @media screen and (max-width:810px){
+        background-image: none
+    }
 }
 
 .container_form {
