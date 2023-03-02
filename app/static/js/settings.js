@@ -95,6 +95,7 @@ otvet_popup_active.forEach(function (item) {
 });
 
 // pop up по таймеру 30 секундв
+
 // функция появления
 function greet () {
   document.getElementsByClassName('pop_up1')[0].style.display = "flex";
