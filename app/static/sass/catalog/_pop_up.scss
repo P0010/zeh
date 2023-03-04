@@ -94,8 +94,8 @@
         width: 0;
         height: 0;
     }
-    @media screen and(max-width:794px) {
-        top:115px;
+    @media screen and(max-width:892px) {
+        top:120px;
     }
 }
 .pop_up_catalog.active{
@@ -108,7 +108,7 @@
     top: 100px;
     z-index: 3;
     
-    @media screen and(max-width:794px) {
+    @media screen and(max-width:892px) {
         top:140px;
     }
 
@@ -118,16 +118,19 @@
 // menu mobile
 
 .pop_up_mobilmenu.active {
-    display: flex;
-    position: absolute;
-    background-color: rgba(48, 48, 48, 0.925);
-    width: 100%;
-    top: 85px;
-    left: 0px;
-    padding: 10px 15px;
-    row-gap: 10px;
-    flex-wrap: wrap;
-    z-index: 4;
+    background-color:tomato;
+    li:nth-child(2){
+        display:flex
+    }
+    li:nth-child(3){
+        display:flex
+    }
+    li:nth-child(1){
+        display:none
+    }
+    li:nth-child(4){
+        display:none
+    }
 }
 
 // animations close
@@ -161,6 +164,61 @@
     justify-content: center;
     align-items: center;
 }
+
+// search
+
+.pop_search{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(48, 48, 48, 0.925);
+    z-index: 60;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.input_search{
+    width:100%;
+    background-image: url('../images/breadcrumbs/search.svg') ;
+    background-repeat: no-repeat;
+    background-position: 4px center;
+    padding: 10px 5px 10px 40px;
+    border-radius: 10px;
+}
+
+.wrap_search{
+    position: relative;
+    width: 900px;
+}
+
+.form_search {
+    padding: 40px 30px;
+    width: 100%;
+    background-color: rgba(10, 10, 10, 0.692);
+    border-radius: 10px;
+    display: flex;
+    column-gap:10px;
+    row-gap: 10px;
+    z-index: 1;
+}
+
+.search_button {
+    height: 50px;
+    width:120px;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    &:hover {
+        background-color: rgb(4, 97, 4);
+    }
+
+}
+
 // .pop_up1.active{
 //     display: flex;
 // }

@@ -6,7 +6,8 @@
     justify-content: center;
     width: 100%;
     min-width: 370px;
-    
+    @media screen and (max-width:813px){
+        padding-top:110px}
 }
 
 

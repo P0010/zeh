@@ -119,6 +119,19 @@ del.onclick = function() {
   delete localStorage.test;
 }
 
+// Поиск 
+
+// при клике мы включаем поиск pop up
+function click_search () {
+  document.getElementsByClassName('pop_search')[0].style.display = "flex";
+}
+
+// при клике мы выключаем pop up
+function rabbit () {
+  document.getElementsByClassName('pop_search')[0].style.display = "none";
+}
+    
+
 
 
 // Слайдер продукта (картинки)

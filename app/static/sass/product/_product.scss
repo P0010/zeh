@@ -183,6 +183,10 @@ h3{
     ul {
         margin-left: 35px;
     }
+    @media screen and(max-width:400px) {
+        padding: 0 10px;
+    }
+    
 }
 
 .suggestion {
@@ -283,10 +287,14 @@ h3{
     border: none !important;
     box-shadow: none !important;
     
-    
-    @media screen and(max-width:500px){
+    @media screen and(max-width:553px){
         min-width: 300px;
         min-height: 320px;
+    }
+    
+    @media screen and(max-width:391px){
+        min-width: 200px;
+        min-height: 200px;
     }
 }
 
