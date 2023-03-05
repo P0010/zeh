@@ -225,6 +225,34 @@ def aboutus():
     else:
         return render_template('aboutus.html', categories=categories, ind=ind, contacts=contacts, now=now, ab=ab)
 
+@app.route('/search', methods = ['POST', 'GET'])
+def w_search():
+
+    ind = Social.query.first()
+    categories = Category.query.filter(Category.name=='root').first()
+    contacts = Contacts.query.all()
+
+    if request.method == "POST":
+        name = request.form['name']
+        phone = request.form['phone']
+        topic = request.form['topic']
+        asyncio.run(somefunc(name, phone, topic))
+        send_email(name, phone, topic)
+        client = Clients(name=name, phone=phone, site=topic)
+        try:
+            db.session.add(client)
+            db.session.commit()
+            return render_template('search.html', categories=categories, ind=ind, contacts=contacts, now=now, happy='Данные успешно отправленны')
+        except:
+            return 'Произошла ошибка'
+    else:
+        keyword = request.args.get('search')
+        keyword = keyword.capitalize() # type: ignore 
+        keywordlower = keyword.lower() # type: ignore 
+        category = Category.query.msearch(keyword, fields=['name', 'text'], limit=10)
+        product = Product.query.msearch(keyword, fields=['name', 'intro', 'text'], limit=10)
+        productlower = Product.query.msearch(keywordlower, fields=['name', 'intro', 'text'], limit=10)
+        return render_template('search.html', category=category, product=product, productlower=productlower,  ind=ind, categories=categories, now=now, contacts=contacts, keyword=keyword)
 
 @app.route('/politica')
 def politica():

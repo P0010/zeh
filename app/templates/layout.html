@@ -178,6 +178,7 @@
     </div>
 
     <!-- Попап поиск -->
+    <form action="{{ url_for('w_search')}}" method="GET" >
     <div class="pop_search" id="pop_search" >
         <div class="wrap_search">
             <img id="pop_up_close2" onclick="rabbit()" src="{{ url_for('static', filename='images/catalog/close.svg')}}">
@@ -187,6 +188,7 @@
             </div> 
         </div>
     </div>
+    </form>
 
 
     <footer class="footer">

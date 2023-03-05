@@ -1,23 +1,80 @@
 {% extends 'layout.html' %}
 
-{% block title %}{{case_t.title}}{% endblock %}
-{% block description %}{{case_t.description}}{% endblock %}
+{% block title %}Поиск{% endblock %}
+{% block description %}Поиск{% endblock %}
 
 {% block body %}
 
 <div class="cases">
-    <h3>Кейсы</h3>
-    {% for case in cases %}
-    <div class="case">
-        <img src="{{ url_for('static', filename='images/product/cases/')}}{{ case.image[0].filename }}" alt="{{ case.image[0].alt }}">
-        <div class="title_case">
-            <h3>{{ case.title }}</h3>
-            <p>{{ case.intro }}</p>
-            <a href="{{ url_for('case', url_case=case.url) }}">Читать полностью...</a>
+    <h3>Поиск</h3>
+    {% for prod in product %}
+        <div class="case">
+
+            <a href="{{ url_for('product', url_cat=prod.item.url, url=prod.url) }}">
+                <img src="{{ url_for('static', filename='images/product/new_product/')}}{{ prod.items[0].filename }}" alt="{{ prod.items[0].alt }}">
+            </a>
+            <div class="seartch_text">
+                <h3><a href="{{ url_for('product', url_cat=prod.item.url, url=prod.url) }}">{{ prod.name }}</a></h3>
+                <p>{{ prod.text|safe|truncate(400, True) }}</p>
+                <a href="{{ url_for('product', url_cat=prod.item.url, url=prod.url) }}">Читать полностью</a>
+            </div>
         </div>
-    </div>
     {% endfor %}
 
+    {% for cat in category %}
+        <div class="case">
+
+            <a href="{{ url_for('catid', url=cat.url) }}">
+                <img src="{{ url_for('static', filename='images/product/catalog/')}}{{ cat.image[0].filename }}" alt="{{ cat.image[0].alt }}">
+            </a>
+            <div class="seartch_text">
+                <h3><a href="{{ url_for('catid', url=cat.url) }}">{{ cat.name }}</a></h3>
+                <p>{{ cat.text|safe|truncate(400, True) }}</p>
+                <a href="{{ url_for('catid', url=cat.url) }}">Читать полностью</a>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% for prodl in productlower %}
+        <div class="case">
+
+            <a href="{{ url_for('product', url_cat=prodl.item.url, url=prodl.url) }}">
+                <img src="{{ url_for('static', filename='images/product/new_product/')}}{{ prodl.items[0].filename }}" alt="{{ prodl.items[0].alt }}">
+            </a>
+            <div class="seartch_text">
+                <h3><a href="{{ url_for('product', url_cat=prodl.item.url, url=prodl.url) }}">{{ prodl.name }}</a></h3>
+                <p>{{ prodl.text|safe|truncate(400, True) }}</p>
+                <a href="{{ url_for('product', url_cat=prodl.item.url, url=prodl.url) }}">Читать полностью</a>
+            </div>
+        </div>
+    {% endfor %}
+
+</div>
+
+<div class="text_form xred">
+    <div class="form new_reddd">
+        <h3>обратный <br> звонок</h3>
+        <form method="post" id="form-id2" class="js-form">
+            <div class="user-box">
+              <input type="text" name="name" required>
+              <label>Ваше имя</label>
+            </div>
+            <div class="user-box">
+              <input type="text" name="phone" required>
+              <label>Ваш телефон</label>
+              <input class="tab2" type="hidden" name="topic"  value="Клиент в поиске написал: {{ keyword }}" required>
+            </div>
+            <input type="submit" class="form__button" >
+            <div class="terms">Я принимаю <a href="{{url_for('politica')}}">условия</a> передачи информации.</div>
+        </form>
+    </div>
+
+    <div class="text_three__container">
+        <h3>Нет того, что вы искали?</h3>
+        <div class="mono">
+            Оставьте заявку, мы поможем
+        </div>
+    </div>
 </div>
 
 <div class="bigcontact">
@@ -101,8 +158,6 @@
         }
     });
 </script>
-
-
 
 
 

@@ -115,6 +115,13 @@ h3{
     }
 }
 
+.xred{
+    margin: 0 auto;
+    @media screen and(max-width:1013px){
+        flex-wrap: wrap-reverse;
+    }
+}
+
 .paragraph p::before {
     content:"● ";
     color: $green;
@@ -369,5 +376,21 @@ h3{
 }
 
 
+.seartch_text {
+    align-self: flex-start;
+    color: #A0A0A0;
+}
+.seartch_text ul li{
+    list-style-type: disc;
+}
+.seartch_text ul {
+    margin-left: 35px;
+}
+.seartch_text h3 {
+    margin-bottom: 15px;
+}
+.seartch_text a {
+    color:white;
+}
 
 

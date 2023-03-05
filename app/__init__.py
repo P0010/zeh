@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from sassutils.wsgi import SassMiddleware # Sass css
+from flask_msearch import Search # поиск
 
 
 # UPLOAD_FOLDER = 'app/static/images/product'
@@ -23,6 +24,8 @@ manager = LoginManager(app)
 
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
+search = Search() # поиск
+search.init_app(app) # поиск
 
 def allowed_file(filename):
     """ Функция проверки расширения файла """
