@@ -1082,7 +1082,8 @@ h3 {
     height: 0; }
   @media screen and (max-width: 892px) {
     .pop_up_catalog {
-      top: 120px; } }
+      top: 120px;
+      height: 86vh; } }
 .pop_up_catalog.active {
   visibility: visible; }
 

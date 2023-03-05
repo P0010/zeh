@@ -247,12 +247,17 @@ def w_search():
             return 'Произошла ошибка'
     else:
         keyword = request.args.get('search')
+
         keyword = keyword.capitalize() # type: ignore 
         keywordlower = keyword.lower() # type: ignore 
-        category = Category.query.msearch(keyword, fields=['name', 'text'], limit=10)
-        product = Product.query.msearch(keyword, fields=['name', 'intro', 'text'], limit=10)
-        productlower = Product.query.msearch(keywordlower, fields=['name', 'intro', 'text'], limit=10)
-        return render_template('search.html', category=category, product=product, productlower=productlower,  ind=ind, categories=categories, now=now, contacts=contacts, keyword=keyword)
+
+        category = Category.query.msearch(keyword, fields=['name'], limit=10)
+        product = Product.query.msearch(keyword, fields=['name'], limit=10)
+
+        productlower = Product.query.msearch(keywordlower, fields=['name'], limit=10)
+        categorylower = Category.query.msearch(keywordlower, fields=['name'], limit=10)
+
+        return render_template('search.html', category=category, categorylower=categorylower, product=product, productlower=productlower,  ind=ind, categories=categories, now=now, contacts=contacts, keyword=keyword)
 
 @app.route('/politica')
 def politica():

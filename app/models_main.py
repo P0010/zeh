@@ -20,7 +20,7 @@ def load_user(user_id):
 
 class Category(db.Model, BaseNestedSets):
     __tablename__ = 'categories'
-    __searchable__ = ['name', 'text']
+    __searchable__ = ['name']
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(400), index=True, unique=True)
     url = db.Column(db.String, unique=True)
@@ -41,7 +41,7 @@ subs = db.Table('subs',
 
 class Product(db.Model):
     __tablename__ = 'products'
-    __searchable__ = ['name', 'intro', 'text']
+    __searchable__ = ['name']
     id = db.Column(db.Integer, primary_key=True)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     name = db.Column(db.String(475), index=True)

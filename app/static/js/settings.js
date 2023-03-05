@@ -127,7 +127,7 @@ function click_search () {
 }
 
 // при клике мы выключаем pop up
-function rabbit () {
+function rabbit_search () {
   document.getElementsByClassName('pop_search')[0].style.display = "none";
 }
     
