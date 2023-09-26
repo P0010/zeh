@@ -6,7 +6,7 @@
 {% block body %}
 
 <div class="cases">
-    <h3>Кейсы</h3>
+    <h3>Статьи</h3>
     {% for case in cases %}
     <div class="case">
         <img src="{{ url_for('static', filename='images/product/cases/')}}{{ case.image[0].filename }}" alt="{{ case.image[0].alt }}">

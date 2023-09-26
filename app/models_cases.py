@@ -85,6 +85,7 @@ class Aboutus(db.Model):
     equipment = db.relationship("Equipment", cascade="all,delete", backref='aboutus', lazy='dynamic')
     employees = db.relationship("Employees", cascade="all,delete", backref='aboutus', lazy='dynamic')
     awards = db.relationship("Awards", cascade="all,delete", backref='aboutus', lazy='dynamic')
+    partners = db.relationship("Partners", cascade="all,delete", backref='aboutus', lazy='dynamic')
 
 
 class Foundation(db.Model):
@@ -105,6 +106,11 @@ class Employees(db.Model):
     aboutus_id = db.Column(db.Integer, db.ForeignKey('aboutus.id'))
 
 class Awards(db.Model): # type: ignore
+    id = db.Column(db.Integer, primary_key=True)
+    filename = db.Column(db.String)
+    aboutus_id = db.Column(db.Integer, db.ForeignKey('aboutus.id'))
+
+class Partners(db.Model): # type: ingore
     id = db.Column(db.Integer, primary_key=True)
     filename = db.Column(db.String)
     aboutus_id = db.Column(db.Integer, db.ForeignKey('aboutus.id'))

@@ -5,9 +5,10 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from transliterate import slugify
 
 from app import app, db, allowed_file
-from app.models_cases import Contacts, ContactsTitle, Phone, Cases, CasesTitle, Images_cases, Keys_cases, Images_key_cases, Aboutus, Foundation, Equipment, Employees, Awards, Clients
+from app.models_cases import Contacts, ContactsTitle, Partners, Phone, Cases, CasesTitle, Images_cases, Keys_cases, Images_key_cases, Aboutus, Foundation, Equipment, Employees, Awards, Clients
 from app.models_main import Category, Product
 from app.new_image import NewCaseImage, NewCaseKey
+import uuid
 
 
 # Функции проверки кириллиц
@@ -469,6 +470,48 @@ def del_image_awards(id):
         return "При удалении произошла ошибка"
 
 
+# Загрузить партнёров (partners)
+
+@app.route('/image_upload_partners', methods=['POST', 'GET'])
+@login_required
+def image_upload_partners():
+    ab = Aboutus.query.filter_by(id=1).first()
+    file = request.files['file']
+
+    extension = file.filename.split(".")[1].lower()
+    file_name = uuid.uuid4().hex+'.'+extension
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
+    partners2 = Partners(filename=file_name)
+
+    ab.partners.append(partners2)
+
+    try:
+        db.session.add(ab)
+        db.session.commit()
+        return redirect('/admin/update_aboutus')
+    except:
+        return 'Произошла ошибка2'
+
+
+# Удалить партнёров (partners)
+
+@app.route('/del_image_parners/<int:id>')
+@login_required
+def del_image_partners(id):
+    partners = Partners.query.filter_by(id=id).first()
+    
+    path = app.config['UPLOAD_FOLDER']+'/'
+    if os.path.isfile(path + partners.filename) == True:
+        os.remove(path + partners.filename)
+        
+    try:
+        db.session.delete(partners)
+        db.session.commit()
+        return redirect('/admin/update_aboutus')
+    except:
+        return "При удалении произошла ошибка"
+
+
 # Клиенты
 
 @app.route('/client')
@@ -490,7 +533,6 @@ def client_del(id):
         return redirect('/client')
     except:
         return "При удалении произошла ошибка"
-
 
 
 

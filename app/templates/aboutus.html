@@ -70,20 +70,14 @@
     <div class="part2">
         <h3>Наши партнёры</h3>
         <div class="partner_container">
-            <img src="{{ url_for('static', filename='images/testdelete/partner/gazprom.png')}}">
-            <img src="{{ url_for('static', filename='images/testdelete/partner/sberbank.png')}}">
-            <img src="{{ url_for('static', filename='images/testdelete/partner/rostelecom.png')}}">
-            <img src="{{ url_for('static', filename='images/testdelete/partner/mts.png')}}">
-            <img src="{{ url_for('static', filename='images/testdelete/partner/transneft.png')}}">
-            <img src="{{ url_for('static', filename='images/testdelete/partner/rosneft.png')}}">
-            <img src="{{ url_for('static', filename='images/testdelete/partner/megafon.png')}}">
-            <img src="{{ url_for('static', filename='images/testdelete/partner/bashneft.png')}}">
-            <img src="{{ url_for('static', filename='images/testdelete/partner/rosatom.png')}}">
-            <img src="{{ url_for('static', filename='images/testdelete/partner/rusgidro.png')}}">
-            <img src="{{ url_for('static', filename='images/testdelete/partner/beeline.png')}}">
+            {% for awards in ab.partners %}
+                <img src="{{ url_for('static', filename='images/product/')}}{{ awards.filename }}" >
+            {% endfor %}      
         </div>
     </div>
 </div>
+
+
 
 
 <div class="awards">

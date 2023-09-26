@@ -168,6 +168,45 @@
 
         {% endfor %}
     </div>
+
+    
+    <div class="total">
+        <form method="post" action="{{ url_for('image_upload_partners') }}" enctype=multipart/form-data>
+            <h3>Добавьте Партнёров</h3>
+            <div class="column_one">
+                <div class="count_one">8</div>
+                <div>
+                    <div class="input_red">
+                        <label for="file-partner" class="custom-file-upload">
+                            Выбрать картинку
+                        </label>
+                       <input id="file-partner" type=file name=file required>
+                    </div>
+                </div>
+            </div>
+
+            <input class="admin_button" type="submit" value="Загрузить">
+        </form>
+
+
+        <div class="del_partner">
+        <h3>Удалите Партёров</h3>
+            <div class="suggestion1">
+                {% for img in ab.partners %}
+               
+                <div class="suggestion__product1">
+                    <div class="check">
+                        <a href="{{ url_for('del_image_partners', id=img.id)}}" style="color: white;">Удалить</a>
+                    </div>
+                    <img src="{{ url_for('static', filename='images/product/')}}{{ img.filename }}" alt="">
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    
+    </div>
+
     
 
 </div>
