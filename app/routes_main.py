@@ -11,7 +11,7 @@ from app import app, db, allowed_file
 from app.models_main import Category, Product, Images, Price, Suggestion, Social, Index_product, User
 from app.models_cases import Cases, CasesTitle, Contacts, ContactsTitle, Aboutus, Clients
 from app.telegr import somefunc
-from app.mail import send_email
+# from app.mail import send_email
 
 now = datetime.datetime.now()  # Дата
 
@@ -29,7 +29,7 @@ def index():
         topic = request.form['topic']
         if phone != '':
             asyncio.run(somefunc(name, phone, topic))
-            send_email(name, phone, topic)
+            # send_email(name, phone, topic) отправка на почту отключил так как яндекс не оплатили
             client = Clients(name=name, phone=phone, site=topic)
             try:
                 db.session.add(client)
@@ -54,7 +54,7 @@ def catalog():
         topic = request.form['topic']
         if phone != '':
             asyncio.run(somefunc(name, phone, topic))
-            send_email(name, phone, topic)
+            # send_email(name, phone, topic)
             client = Clients(name=name, phone=phone, site=topic)
             try:
                 db.session.add(client)
@@ -86,7 +86,7 @@ def catid(url):
         topic = request.form['topic']
         if phone != '':
             asyncio.run(somefunc(name, phone, topic))
-            send_email(name, phone, topic)
+            # send_email(name, phone, topic)
             client = Clients(name=name, phone=phone, site=topic)
             try:
                 db.session.add(client)
@@ -114,7 +114,7 @@ def product(url_cat, url):
         topic = request.form['topic']
         if phone != '':
             asyncio.run(somefunc(name, phone, topic))
-            send_email(name, phone, topic)
+            # send_email(name, phone, topic)
             client = Clients(name=name, phone=phone, site=topic)
             try:
                 db.session.add(client)
@@ -140,7 +140,7 @@ def cases():
         phone = request.form['phone']
         topic = request.form['topic']
         asyncio.run(somefunc(name, phone, topic))
-        send_email(name, phone, topic)
+        # send_email(name, phone, topic)
         client = Clients(name=name, phone=phone, site=topic)
         try:
             db.session.add(client)
@@ -166,7 +166,7 @@ def case(url_case):
         phone = request.form['phone']
         topic = request.form['topic']
         asyncio.run(somefunc(name, phone, topic))
-        send_email(name, phone, topic)
+        # send_email(name, phone, topic)
         client = Clients(name=name, phone=phone, site=topic)
         try:
             db.session.add(client)
@@ -190,7 +190,7 @@ def contacts():
         phone = request.form['phone']
         topic = request.form['topic']
         asyncio.run(somefunc(name, phone, topic))
-        send_email(name, phone, topic)
+        # send_email(name, phone, topic)
         client = Clients(name=name, phone=phone, site=topic)
         try:
             db.session.add(client)
@@ -214,7 +214,7 @@ def aboutus():
         phone = request.form['phone']
         topic = request.form['topic']
         asyncio.run(somefunc(name, phone, topic))
-        send_email(name, phone, topic)
+        # send_email(name, phone, topic)
         client = Clients(name=name, phone=phone, site=topic)
         try:
             db.session.add(client)
@@ -237,7 +237,7 @@ def w_search():
         phone = request.form['phone']
         topic = request.form['topic']
         asyncio.run(somefunc(name, phone, topic))
-        send_email(name, phone, topic)
+        # send_email(name, phone, topic)
         client = Clients(name=name, phone=phone, site=topic)
         try:
             db.session.add(client)
